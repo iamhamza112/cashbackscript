@@ -1,0 +1,669 @@
+ 
+/************ DropDown Menu ******************/
+
+.header_profile_flags .dropdown {
+    display: inline-block;
+}
+
+.dropdown_toggle.profile {
+    margin-right: 5px;
+    color: #ffffffe6;
+}
+
+.dropdown_toggle.profile:hover {
+    background-color: #0000003b;
+    color: #fff;
+}
+
+.dropdown_toggle.profile img {
+    height: 34px;
+    margin-right: 10px;
+}
+
+/*********************************************/
+
+.header {
+    position: fixed;
+    width: 100%;
+    flex: 0 0 auto;
+	color: rgba(255,255,255,.9);
+    background-color: #324148;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-bottom-color: rgba(255,255,255,.1);
+    padding: 4px 0;
+    z-index: 102;
+}
+
+.toggle_menu {
+    flex: 1 0 80px;
+    max-width: 80px;
+}
+
+.toggle_menu i {
+    color: #ffffffe6;
+    font-size: 44px;
+    margin-top: 1px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.toggle_menu i:hover {
+    color: white;
+}
+
+.header_logo {
+    margin-left: 10px;
+}
+
+.header_logo a {
+    display: inline-block;
+    margin: 8px 0;
+}
+
+.header_profile_flags {
+    text-align: right;
+}
+
+.header_flags {
+    display: inline-block;
+    position: relative;
+    margin-right: 2px;
+    text-align: center;
+}
+
+.header_flags > div {
+    position: absolute;
+    top: -26px;
+    right: 0;
+    background-color: #324148;
+    padding: 7px 13px;
+    transition: background-color .2s, right .3s;
+    cursor: pointer;
+}
+
+.header_flags > div:hover {
+    background-color: #263237;
+}
+
+.header_flags > div img {
+    height: 30px;
+}
+
+.header_flags > div.current, .header_flags > div.opened {
+    z-index: 1;
+}
+
+.middle {
+    position: relative;
+    top: 55px;
+	flex: 1 0 auto;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    max-width: 250px;
+    background-color: #263238;
+    color: #fff;
+    position: fixed;
+    z-index: 101;
+    height: 100%;
+}
+
+
+@media (min-width: 768px) {
+
+    .header {
+        position: relative;
+    }
+
+    .content_side {
+        flex-basis: calc(100% - 250px);
+        max-width: calc(100% - 250px);
+    }
+
+    .sidebar {
+        position: inherit;
+        height: auto;
+    }
+
+    .middle {
+        top: 0;
+    }
+
+}
+
+.main_content {
+    padding: 0 10px;
+}
+
+.sidebar_menu {
+	width: 100%;
+}
+
+.sidebar_menu li a {
+	position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: .75rem 1.25rem;
+    transition: background-color ease-in-out .15s,color ease-in-out .15s;
+	color: #ffffffe6;
+}
+
+.sidebar_menu li a:hover {
+	color: #fff;
+    background-color: rgba(0,0,0,.15);
+}
+
+.sidebar_menu li a:active, .sidebar_menu li a.active {
+	background-color: #26a69a;
+    color: #fff;
+}
+
+.sidebar_menu li a i {
+    width: 15px;
+	margin-right: 1.25rem;
+    margin-top: .12502rem;
+    margin-bottom: .12502rem;
+}
+
+.page_title {
+    border-bottom: 1px solid #ddd;
+    margin: 15px 10px 0 15px;
+    padding-bottom: 15px;
+    font-size: 20px;
+    margin: 10px;
+}
+
+/*************** InfoBar ************************/
+
+.adm_infobars {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.mini_infobar {
+	background-color: white;
+    flex: 0 1 49%;
+    max-width: 49%;
+    margin: 15px 0.5% 0  0.5%;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+@media (min-width: 992px) {
+
+.mini_infobar {
+    flex: 0 0 24%;
+    max-width: 24%;
+}
+
+}
+
+.infbar_l {
+	float: left;
+}
+
+.infbar_r {
+	float: right;
+	text-align: right;
+}
+
+.infbar_r strong {
+	font-size: 33px;
+}
+
+.infbar_r strong.small {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/**************** Charts ***********************/
+
+.adm_charts {
+	background-color: white;
+	border: 1px solid #ddd;
+	margin: 15px 0.5% 0  0.5%;
+
+}
+
+.adm_chart_title {
+	background-color: #efefef;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 15px;
+}
+
+.adm_chart_cont {
+	padding: 15px;
+}
+
+.adm_right_controls {
+	width: 100%;
+	padding: 5px 0;
+	margin-bottom: 12px;
+}
+
+.adm_right_controls a {
+	border-top: 1px solid #ddd;
+    padding: 7px 12px 9px;
+    color: #636363;
+    display: block;
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+
+    .adm_right_controls {
+        text-align: right;
+    }
+
+    .adm_right_controls a {
+        border-top: none;
+        padding: 5px 8px 7px;
+        margin-left: 6px;
+        display: inline-block;
+        width: auto;
+        text-decoration: underline;
+    }
+    
+}
+
+.adm_right_controls a:hover {
+	background-color: #eee;
+}
+
+.adm_right_controls a i {
+	position: relative;
+    bottom: -4px;
+    right: 6px;
+    margin-left: 6px;
+    font-size: 1.5em;
+}
+
+/*************** User Profile Page ******************/
+
+.adm_userprofile {
+    display: flex;
+    flex-flow: column;
+}
+
+.adm_infolist {
+    padding-left: 15px;
+}
+
+@media (min-width: 576px) {
+
+.adm_userprofile {
+    flex-flow: row;
+}
+
+.adm_user_photo {
+    flex: 0 0 25%;
+}
+    
+}
+
+@media (min-width: 768px) {
+
+.adm_userprofile {
+    flex-flow: column;
+}
+    
+}
+
+@media (min-width: 992px) {
+
+.adm_userprofile {
+    flex-flow: row;
+}
+
+.adm_user_photo {
+    flex: 0 0 25%;
+    min-width: 250px;
+}
+
+}
+
+.adm_profile_buts a {
+    padding: 0.5rem 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.profile_image {
+    position: relative;
+    width: 65%;
+    margin: 0 auto;
+    padding: 3%;
+    border: 2px dashed #d7dce0;
+    background-color: #e8f1f5;
+}
+
+@media (min-width: 576px) {
+
+    .profile_image {
+        width: 100%;
+    }
+
+}
+
+.profile_image img {
+    width: 100%;
+    display: block;
+}
+
+.profile_image img.notvisible {
+    visibility: hidden;
+}
+
+.change_avatar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 3%;
+    margin-top: -35px;
+    width: 94%;
+    height: 0px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    line-height: 44px;
+    transition: height .2s;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.change_avatar.show {
+    height: 45px;
+    border-top: 1px solid #cccccc15;
+}
+
+input.photo_file {
+    display: none;
+}
+
+/*** photo loader *****/
+
+/**************** Photo Loader *************************/
+
+.photo_loader,
+.photo_loader:before,
+.photo_loader:after {
+    background: #17a2b8;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+}
+
+.photo_loader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: #17a2b8;
+    text-indent: -9999em;
+    margin: auto;
+    font-size: 11px;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+    display: none;
+}
+
+.photo_loader.show {
+    display: block;
+}
+
+.photo_loader:before,
+.photo_loader:after {
+    position: absolute;
+    top: 0;
+    content: '';
+}
+
+.photo_loader:before {
+    left: -1.5em;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.photo_loader:after {
+    left: 1.5em;
+}
+
+@-webkit-keyframes load1 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 0;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em;
+        height: 5em;
+    }
+}
+
+@keyframes load1 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 0;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em;
+        height: 5em;
+    }
+}
+
+/*************** Tables ********************/
+
+table.adm_table {
+    margin-bottom: 15px;
+}
+
+table.adm_table thead tr {
+    background-color: #a6d8d3;
+}
+
+table.adm_table tbody tr td a {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+table.adm_table tbody tr td a:first-child {
+    margin-left: 0;
+}
+
+table.adm_table tbody tr td .fa {
+    font-size: 1.5em;
+}
+
+table.adm_table tbody tr td .fa-remove {
+        font-size: 1.6em;
+}
+
+table.adm_table tbody tr td img.shop {
+    /*width: 100%;
+    max-width: 200px;*/
+    max-width: 100%;
+    height: 50px;
+}
+
+#tableShops thead tr th:nth-child(2), #tableShops tbody tr td:nth-child(2),
+#tableShops thead tr th:nth-child(6), #tableShops tbody tr td:nth-child(6),
+#tableUsers thead tr th:nth-child(2), #tableUsers tbody tr td:nth-child(2),
+#tableUsers thead tr th:nth-child(7), #tableUsers tbody tr td:nth-child(7),
+#tableUsers thead tr th:nth-child(8), #tableUsers tbody tr td:nth-child(8),
+#tableUsers thead tr th:nth-child(3), #tableUsers tbody tr td:nth-child(3) {
+    display: none;
+}
+
+@media (min-width: 576px) {
+
+#tableShops thead tr th:nth-child(2), #tableShops tbody tr td:nth-child(2),
+#tableShops thead tr th:nth-child(6), #tableShops tbody tr td:nth-child(6),
+#tableUsers thead tr th:nth-child(7), #tableUsers tbody tr td:nth-child(7),
+#tableUsers thead tr th:nth-child(8), #tableUsers tbody tr td:nth-child(8) {
+    display: table-cell;
+}
+
+}
+
+@media (min-width: 768px) {
+
+#tableUsers thead tr th:nth-child(3), #tableUsers tbody tr td:nth-child(3) {
+    display: table-cell;
+}
+
+}
+
+@media (min-width: 1200px) {
+
+#tableUsers thead tr th:nth-child(2), #tableUsers tbody tr td:nth-child(2) {
+    display: table-cell;
+}
+
+}
+
+/************** Authentification **********************/
+
+#auth {
+    background-color: #324148;
+    color: #606468;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5em;
+}
+
+#auth_cont {
+    margin: 150px auto;
+    width: 350px;
+}
+
+#auth form span {
+    background-color: #cccccc;
+    color: #56595d;
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+}
+
+#auth form input {
+    width: 300px;
+    height: 50px;
+    outline:none;
+    background-color: #e6e6e6;
+    color: #606468;
+    margin-bottom: 1em;
+    padding: 0 16px;
+}
+
+#auth form input:focus {
+    color:#35393e;
+}
+
+#auth form button {
+    width: 100%;
+    padding: .7rem 0.75rem;
+}
+
+/************** Notifications **********************/
+
+.notif_confirm {
+    width: 400px;
+    padding: 30px;
+    text-align: center;
+}
+
+.notif_confirm a.btn {
+    margin-top: 20px;
+}
+
+/*************** Orders Page *********************/
+
+.orders_table tbody tr td img {
+    height: 50px;
+    max-width: 100%;
+}
+
+/*************** Categories Page *********************/
+
+table.categories_table tbody tr {
+    background-color: #eee;
+}
+
+table.categories_table tbody tr.child {
+    background-color: #fff;
+    height: 38px;
+}
+
+table.categories_table tbody tr.child td:first-child {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/*************** Discounts Page *********************/
+
+.discounts {
+
+}
+
+.discount {
+    background-color: #f1e9c2;
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+.discount .left {
+    background: url(/img/discount_icon.png) no-repeat left center;
+    background-size: 42px;
+    padding: 10px 0 10px 55px;
+}
+
+.discount.active {
+    background-color: #c0ecb5;
+}
+
+.discount button {
+    width: 105px;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.discount input.date {
+    width: 105px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.import_item {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.import_item button {
+    margin-left: 20px;
+}
+
+.import_button img {
+    display: none;
+}
+
+.import_button.loading img {
+    display: inline-block;
+}
+
+.import_button.loading span {
+    display: none;
+}
