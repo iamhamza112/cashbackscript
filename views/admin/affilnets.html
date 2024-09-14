@@ -1,0 +1,31 @@
+{% include "admin/adm_header.html" %}
+<div class="adm_right_controls">
+	<a href="/admin/newaffilnet"><i class="fa fa-plus"></i> Добавить новую партнерскую сеть</a>
+</div>
+<table class="adm_table">
+	<thead>
+		<tr>
+			<th>Партнерская сеть</th>
+			<th>Количество магазинов</th>
+			<th>Опции</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if empty %}
+        <tr><td class="empty_list">Список пуст!</td></tr>
+        {% else %}
+        {% for affnet in affilnets %}
+        <tr>
+			<td><img class="shop" src="/img/affilnets/{{affnet.picture}}"></td>
+			<td>{{affnet.storesCount}}</td>
+			<td class="actions">
+				<a href="/admin/editaffilnet?id={{affnet._id}}"><i class="fa fa-edit"></i></a>
+				<a href="/admin/deleteaffilnet?id={{affnet._id}}"><i class="fa fa-trash-alt"></i></a>
+			</td>
+		</tr>
+        {% endfor %}
+        {% endif %}
+	</tbody>
+</table>
+{% include "./pagination.html" %}
+{% include "admin/adm_footer.html" %}

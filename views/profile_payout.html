@@ -1,0 +1,40 @@
+{% include "header.html" %}
+<div class="container">
+
+  {% include "navbar.html" %}
+
+  <div class="row">
+
+    {% include "profile_sidebar.html" %}
+
+    <div class="col_sm_8 col_lg_9 profile_right">
+
+      {% include "noverified.html" %}
+
+      <h4>{{langs.profile_title}} {{user.name}}</h4>
+
+      {% include "profile_balance.html" %}
+
+      <div class="mini_title">{{langs.payout}}</div>
+
+      <h3>{{langs.choose_payout_method}}</h3>
+
+      <div class="row payout_methods" id="payoutMethods">
+        {% for method in configs.payoutSystems %}
+        {% set requisVal = user.requisites[method.name] %}
+        {% set _r = (method.currency==="USD") ? "" : "_r" %}
+        {% set requisOut = (requisVal.val_1) ? requisVal.val_1 + ", " + requisVal.val_2 : requisVal %}
+        <div>
+          <div class="payout_icon"><img src="/img/payment_{{method.id}}.png"></div>
+          {{langs["paymethod_"+method.name]}}
+          <button class="btn btn_{% if requisVal %}success{% else %}danger{% endif %}" data-id="{{method.id}}" data-method='{{langs["paymethod_"+method.name]}}' data-requisites='{{requisOut}}' data-currency='{{method.currency}}' data-currency_lang="{% if _r %}{{langs.currency_r}}{% else %}{{langs.currency_d}}{% endif %}" data-money='{{user["money"+_r]}}' data-action="{% if requisVal %}payout">{{langs.withdraw}}{% else %}requisite">{{langs.add}}{% endif %}</button>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+{% include "footer.html" %}

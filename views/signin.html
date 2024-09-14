@@ -1,0 +1,45 @@
+<div class="notif_auth register" data-id="authentification">
+    <div class="close_window" id="closeWindow" title="{{langs.close}}"></div>
+    <div class="notifauth_title">
+      <span class="p_login">{{langs.auth_signin_title}}</span>
+      <span class="p_register">{{langs.auth_signup_title}}</span>
+    </div>
+
+    <div class="infobar signin fixed" id="infoBar"></div>
+
+    <div class="notifauth_desc">
+      <span class="p_login">{{langs.auth_signin_info}}</span>
+      <span class="p_register">{{langs.auth_signup_info}}</span>
+    </div>
+    <div class="notifauth_form">
+      <span class="p_login">
+        <form id="signinForm">
+            <input type="email" name="email" id="signinEmail" class="field" placeholder="Email" maxlength="32" required>
+            <input type="password" name="password" id="signinPassword" class="field" placeholder="{{langs.password}}" maxlength="16" required>
+            <button type="submit" class="btn btn_info">{{langs.signin_submit}}</button>
+        </form>
+      </span>
+      <span class="p_register">
+        <form id="signupForm">
+            <input type="email" name="email" id="signupEmail" class="field" placeholder="Email" maxlength="32" required>
+            <input type="text" name="name" id="signupName" class="field" placeholder="{{langs.name}}" maxlength="24" required>
+            <input type="password" name="password" id="signupPassword" class="field" placeholder="{{langs.password}}" maxlength="16" required>
+            <input type="password" name="password" id="signupPassword2" class="field" placeholder="{{langs.password_repeat}}" maxlength="16" required>
+            <button type="submit" class="btn btn_info">{{langs.signup_submit}}</button>
+        </form>
+      </span>
+    </div>
+    <div class="notifauth_sifnos">
+      <span class="p_login">{{langs.stiil_not_signed_in}} <a href="#" id="signupButton">{{langs.signup_submit}}</a></span>
+      <span class="p_register">{{langs.stiil_not_signed_up}} <a href="#" id="signinButton">{{langs.signin_submit_2}}</a></span>
+    </div>
+    <div class="notifauth_socnets" id="notifauthSocnets" data-ulogin="display=buttons; fields=first_name; optional=last_name,email,sex,bdate,photo_big,country,city; mobilebuttons=0; callback=socialAuth">
+        <button id="facebook" data-uloginbutton="facebook">Facebook</button>
+        <button id="odnoklassniki" data-uloginbutton="odnoklassniki">Odnoklassnik</button>
+        <button id="vkontakte" data-uloginbutton="vkontakte">Vkontakte</button>
+        <button id="googleplus" data-uloginbutton="google">Google+</button>
+    </div>
+    <div class="notifauth_policy">
+      {{langs.auth_policy_1}} <a href="/agreement" target="_blank" style="text-decoration: underline">{{langs.auth_policy_2}}</a> {{langs.and}} <a href="/privacy_policy" target="_blank" style="text-decoration: underline">{{langs.auth_policy_3}}</a>
+    </div>
+</div>

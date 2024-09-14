@@ -1,0 +1,128 @@
+{% include "header.html" %}
+<div class="container">
+
+  {% include "navbar.html" %}
+
+  <div class="row">
+
+    {% include "profile_sidebar.html" %}
+
+    <div class="col_sm_8 col_lg_9 profile_right">
+
+      {% include "noverified.html" %}
+
+      <h4>{{langs.profile_title}} {{user.name}}</h4>
+
+      {% include "profile_balance.html" %}
+
+      <div id="infoBar" class="infobar user_settings"></div>
+
+      <form method="post" action="/api/profile_settings" id="changeUserSettings">
+
+        <div class="mini_title">{{langs.personal_data_edit_title}}</div>
+
+        <div class="fields_list">
+          {% if user.email %}
+          <div class="fields_list_item">
+            <div class="flist_left">
+              E-mail{{langs.colon}}
+            </div>
+            <div class="flist_right">
+              <input type="email" name="email" class="field" value="{{user.email}}" disabled>
+            </div>
+          </div>
+          {% endif %}
+          <div class="fields_list_item">
+            <div class="flist_left">
+              {{langs.name}}{{langs.colon}}
+            </div>
+            <div class="flist_right">
+              <input type="text" name="name" class="field" value="{{user.name}}">
+            </div>
+          </div>
+          <div class="fields_list_item">
+            <div class="flist_left">
+              {{langs.gender}}{{langs.colon}}
+            </div>
+            <div class="flist_right">
+              <select name="gender" class="field">
+                {% if user.gender === undefined %}<option value="0">-- {{langs.not_choosed}} --</option>{% endif %}
+                <option value="2"{% if user.gender === 2 %} selected{% endif %}>{{langs.gender_m}}</option>
+                <option value="1"{% if user.gender === 1 %} selected{% endif %}>{{langs.gender_w}}</option>
+              </select>
+            </div>
+          </div>
+          {% if user.socNet %}
+          <div class="fields_list_item">
+            <div class="flist_left">
+              {{langs.socnet}}{{langs.colon}}
+            </div>
+            <div class="flist_right">
+              {% if user.socNet === "facebook" %}<a href="{{user.socPage}}" target="_blank" class="socnet fb"><i class="fab fa-facebook"></i></a>{% endif %}
+              {% if user.socNet === "google" %}<a href="{{user.socPage}}" target="_blank" class="socnet gp"><i class="fab fa-google"></i></a>{% endif %}
+              {% if user.socNet === "odnoklassniki" %}<a href="{{user.socPage}}" target="_blank" class="socnet ok"><i class="fab fa-odnoklassniki"></i></a>{% endif %}
+              {% if user.socNet === "vkontakte" %}<a href="{{user.socPage}}" target="_blank" class="socnet vk"><i class="fab fa-vk"></i></a>{% endif %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="mini_title">{{langs.change_password_title}}</div>
+
+        <div class="fields_list">
+          {% if user.password %}
+          <div class="fields_list_item">
+            <div class="flist_left">{{langs.old_password}}{{langs.colon}}</div>
+            <div class="flist_right">
+              <input type="password" name="oldpassword" class="field" maxlength="16">
+            </div>
+          </div>
+          {% endif %}
+          <div class="fields_list_item">
+            <div class="flist_left">{{langs.new_password}}{{langs.colon}}</div>
+            <div class="flist_right">
+              <input type="password" name="newpassword" class="field" maxlength="16">
+            </div>
+          </div>
+          <div class="fields_list_item">
+            <div class="flist_left">{{langs.password_repeat_2}}{{langs.colon}}</div>
+            <div class="flist_right">
+              <input type="password" name="rptpassword" class="field" maxlength="16">
+            </div>
+          </div>
+        </div>
+
+        <div class="mini_title">{{langs.notifs_settings_title}}</div>
+
+        <div class="fields_list">
+          <div class="fields_list_item">
+            <div class="flist_left">
+              {{langs.notiflang}}{{langs.colon}}
+            </div>
+            <div class="flist_right">
+              <select name="notiflang" class="field">
+                <option value="2"{% if user.notiflang === 2 %} selected{% endif %}>English</option>
+                <option value="1"{% if user.notiflang === 1 %} selected{% endif %}>Русский</option>
+              </select>
+            </div>
+          </div>
+          <div class="fields_list_item" style="flex-flow: row;">
+            <input type="checkbox" name="notif_1" id="notif_1" {% if user.notif_1 %}checked{% endif %}><label for="notif_1">{{langs.profile_notif_1}}</label>
+          </div>
+          <div class="fields_list_item" style="flex-flow: row; margin-bottom: 40px;">
+            <input type="checkbox" name="notif_2" id="notif_2" {% if user.notif_2 %}checked{% endif %}><label for="notif_2">{{langs.profile_notif_2}}</label>
+          </div>
+        </div>
+
+          <div style="margin: 15px 0; text-align: center;">
+            <button type="submit" class="btn btn_info" style="padding: 0.4rem 5rem;">{{langs.save_changes}}</button>
+          </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+{% include "footer.html" %}

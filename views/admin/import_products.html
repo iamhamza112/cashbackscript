@@ -1,0 +1,14 @@
+{% include "admin/adm_header.html" %}
+
+<form method="post" enctype="multipart/form-data" id="form">
+	<div class="import_item">
+		Aliexpress Hot Products:
+		<input type="hidden" name="import_type" value="1">
+		<input type="file" name="import_file" class="d_none" id="importFile">
+		<button type="submit" class="btn btn_secondary import_button" id="importButton"><span>Импортировать</span><img src="/img/import_loader.gif"></button>
+		<br>
+		<input type="checkbox" name="import_delold" id="importDelold"><label for="importDelold">Удалить старую</label>
+	</div>
+</form>
+
+{% include "admin/adm_footer.html" %}

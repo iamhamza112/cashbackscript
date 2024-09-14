@@ -1,0 +1,43 @@
+{% include "admin/adm_header.html" %}
+<div class="adm_right_controls">
+	<a href="/admin/newcategory"><i class="fa fa-plus"></i> Новая категория</a>
+</div>
+<table class="adm_table categories_table">
+	<thead>
+		<tr>
+			<th>Иконка FA</th>
+			<th>Название</th>
+			<th>Магазины</th>
+			<th>Опции</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if empty %}
+        <tr class="empty_list"><td>Список пуст!</td></tr>
+        {% else %}
+        {% for ctgr in categories %}
+        <tr>
+			<td><i class="fa fa-{{ctgr.icon}}"></i></td>
+			<td>{{ctgr.name}}</td>
+			<td>{{ctgr.storesCount}}</td>
+			<td class="actions">
+				<a href="/admin/editcategory?id={{ctgr._id}}"><i class="fa fa-edit"></i></a>
+				<a href="/admin/deletecategory?id={{ctgr._id}}"><i class="fa fa-trash-alt"></i></a>
+			</td>
+		</tr>
+			{% for child in ctgr.childs %}
+	        <tr class="child">
+				<td>-</td>
+				<td>{{child.name}}</td>
+				<td>{{child.storesCount}}</td>
+				<td class="actions">
+					<a href="/admin/editcategory?id={{child._id}}"><i class="fa fa-edit"></i></a>
+					<a href="/admin/deletecategory?id={{child._id}}"><i class="fa fa-trash-alt"></i></a>
+				</td>
+			</tr>
+	        {% endfor %}
+        {% endfor %}
+        {% endif %}
+	</tbody>
+</table>
+{% include "admin/adm_footer.html" %}

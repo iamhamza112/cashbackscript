@@ -1,0 +1,687 @@
+{% include "admin/adm_header.html" %}
+
+<script>
+  
+/*$(document).ready(function() {
+
+var newRequest = function(orders) {
+
+  for (var i = 0; i < orders.length; i++) {
+
+    $.ajax({
+
+        type: "POST",
+
+        url: "/api/affilnetActionStatus",
+        
+        data: JSON.stringify(orders[i]),
+
+        contentType: "application/json; charset=utf-8",
+
+        dataType: "json",
+
+        success: function(data) {
+
+          console.log(data)
+
+        },
+
+        failure: function(errMsg) {
+
+            console.log("Error: ", errMsg);
+
+        }
+
+    });
+
+  }
+
+}
+
+newRequest([
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"305.592",
+      "currency":"rub",
+      "order_sum":"12733",
+      "order_id":"96488986524043",
+      "action_time":"1542315238",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"305.592",
+      "currency":"rub",
+      "order_sum":"12733",
+      "order_id":"96489065474043",
+      "action_time":"1542315352",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"152.792",
+      "currency":"rub",
+      "order_sum":"6366.5",
+      "order_id":"96489581124043",
+      "action_time":"1542315436",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"169.12",
+      "currency":"rub",
+      "order_sum":"7046.7",
+      "order_id":"96489581134043",
+      "action_time":"1542315436",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"169.12",
+      "currency":"rub",
+      "order_sum":"7046.7",
+      "order_id":"96335169682542",
+      "action_time":"1542315955",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"152.792",
+      "currency":"rub",
+      "order_sum":"6366.5",
+      "order_id":"96335169672542",
+      "action_time":"1542315955",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"305.592",
+      "currency":"rub",
+      "order_sum":"12733",
+      "order_id":"96340968124973",
+      "action_time":"1542343580",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"152.792",
+      "currency":"rub",
+      "order_sum":"6366.5",
+      "order_id":"96383892934973",
+      "action_time":"1542343680",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"152.792",
+      "currency":"rub",
+      "order_sum":"6366.5",
+      "order_id":"96606556694973",
+      "action_time":"1542343761",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"287.616",
+      "currency":"rub",
+      "order_sum":"11984",
+      "order_id":"96493129814631",
+      "action_time":"1542966040",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"143.808",
+      "currency":"rub",
+      "order_sum":"5992",
+      "order_id":"96645786484631",
+      "action_time":"1542966040",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"330.088",
+      "currency":"rub",
+      "order_sum":"13753.8",
+      "order_id":"96752395574631",
+      "action_time":"1542966040",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"165.04",
+      "currency":"rub",
+      "order_sum":"6876.9",
+      "order_id":"96645786494631",
+      "action_time":"1542966040",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"287.616",
+      "currency":"rub",
+      "order_sum":"11984",
+      "order_id":"96493485884631",
+      "action_time":"1542966040",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"330.088",
+      "currency":"rub",
+      "order_sum":"13753.8",
+      "order_id":"96493842254631",
+      "action_time":"1542966040",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"956.12",
+      "currency":"rub",
+      "order_sum":"39838.34",
+      "order_id":"96646143684631",
+      "action_time":"1542966040",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"287.616",
+      "currency":"rub",
+      "order_sum":"11984",
+      "order_id":"96558206854043",
+      "action_time":"1543048229",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"287.616",
+      "currency":"rub",
+      "order_sum":"11984",
+      "order_id":"96711869874043",
+      "action_time":"1543048373",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"165.04",
+      "currency":"rub",
+      "order_sum":"6876.9",
+      "order_id":"96558804484043",
+      "action_time":"1543048680",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"143.808",
+      "currency":"rub",
+      "order_sum":"5992",
+      "order_id":"96558804474043",
+      "action_time":"1543048680",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"330.088",
+      "currency":"rub",
+      "order_sum":"13753.8",
+      "order_id":"96819639264043",
+      "action_time":"1543048808",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"330.088",
+      "currency":"rub",
+      "order_sum":"13753.8",
+      "order_id":"96819639344043",
+      "action_time":"1543048931",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"287.616",
+      "currency":"rub",
+      "order_sum":"11984",
+      "order_id":"96828673264973",
+      "action_time":"1543065752",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"287.616",
+      "currency":"rub",
+      "order_sum":"11984",
+      "order_id":"96721700374973",
+      "action_time":"1543065860",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"330.088",
+      "currency":"rub",
+      "order_sum":"13753.8",
+      "order_id":"96613577204973",
+      "action_time":"1543065961",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"143.808",
+      "currency":"rub",
+      "order_sum":"5992",
+      "order_id":"96721980174973",
+      "action_time":"1543066096",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   },
+   {
+      "offer_id":"2789",
+      "website_id":"105802",
+      "subid":"mdmvNVcDdmngHXlA",
+      "payment_sum":"165.04",
+      "currency":"rub",
+      "order_sum":"6876.9",
+      "order_id":"96721980184973",
+      "action_time":"1543066096",
+      "type":"sale",
+      "action_ip":"95.181.200.157",
+      "country_code":"RU",
+      "payment_status":"processing",
+      "subid1":"67Hm7OPbctziAJeT",
+      "subid2":"1"
+   }
+])
+
+});*/
+
+</script>
+
+<script>
+  
+/*$(document).ready(function() {
+
+var newRequest = function(orders) {
+
+  for (var i = 0; i < orders.length; i++) {
+
+    $.ajax({
+
+        type: "POST",
+
+        url: "/api/affilnetActionStatus",
+        
+        data: JSON.stringify(orders[i]),
+
+        contentType: "application/json; charset=utf-8",
+
+        dataType: "json",
+
+        success: function(data) {
+
+          console.log(data)
+
+        },
+
+        failure: function(errMsg) {
+
+            console.log("Error: ", errMsg);
+
+        }
+
+    });
+
+  }
+
+}
+
+newRequest([
+
+  {
+    offer_id: '2789',
+      website_id: '105802',
+      subid: '8nvxrFsrhseSRZXP',
+      subid1: 'IE2Sl4Rx20lIg06M',
+      subid2: '1',
+      payment_sum: '9.867',
+      currency: 'usd',
+      order_sum: '847.5',
+      order_id: '000000004',
+      action_time: '1542966040',
+      type: 'sale',
+      action_ip: '95.181.200.157',
+      country_code: 'RU',
+      payment_status: 'processing'
+  }
+
+])
+
+});*/
+
+</script>
+
+<div class="adm_infobars">
+	<div class="mini_infobar" style="color:#337ab7">
+		<div class="infbar_l"><i class="fa fa-money-bill-alt fa-4x"></i></div>
+		<div class="infbar_r"><strong class="small">{{todayProfit}} {{langs.currency_d}}<br>{{todayProfit_r}} {{langs.currency_r}}</strong><br>Заработана сегодня</div>
+	</div>
+	<div class="mini_infobar" style="color:#5cb85c">
+		<div class="infbar_l"><i class="fa fa-shopping-cart fa-4x"></i></div>
+		<div class="infbar_r"><strong>{{newOrders}}</strong><br>Новые заказы</div>
+	</div>
+	<div class="mini_infobar" style="color:#f0ad4e">
+		<div class="infbar_l"><i class="fa fa-user fa-4x"></i></div>
+		<div class="infbar_r"><strong>{{newUsers}}</strong><br>Новые пользователи</div>
+	</div>
+	<div class="mini_infobar" style="color:#d9534f">
+		<div class="infbar_l"><i class="fa fa-credit-card fa-4x"></i></div>
+		<div class="infbar_r"><strong class="small">{{profit}} {{langs.currency_d}}<br>{{profit_r}} {{langs.currency_r}}</strong><br>Заработана всего</div>
+	</div>
+</div>
+
+<div class="adm_charts">
+	<div class="adm_chart_title">Статистика денежного оборота (USD)</div>
+	<div class="adm_chart_cont">
+		<div id="chartArea"></div>
+	</div>
+</div>
+<div class="adm_charts">
+  <div class="adm_chart_title">Статистика денежного оборота (RUB)</div>
+  <div class="adm_chart_cont">
+    <div id="chartArea2"></div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+
+  $.ajax({
+
+    type: "POST",
+
+    url: "/admin/api/getTurnoverStates",
+    
+    data: JSON.stringify({}),
+
+    contentType: "application/json; charset=utf-8",
+
+    dataType: "json",
+
+    success: function(data) {
+
+      if (!data || data.error) {
+
+          if (!data) data = {error: "Error!"};
+
+          return console.log("Error: ", data.error);
+
+      }
+
+      if (data.length !== 2) data = {error: "Error!"};
+
+      var config = {
+
+        data: data[0],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Общий оборот', 'Общая прибыль'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        resize: true,
+        parseTime: false,
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['gray','green']
+
+      };
+
+      config.element = 'chartArea';
+
+      Morris.Area(config);
+
+      config.data = data[1];
+
+      config.element = 'chartArea2';
+
+      Morris.Area(config);
+
+    },
+
+    failure: function(errMsg) {
+
+        console.log("Error: ", errMsg);
+
+    }
+
+});
+	/*var data = [
+      { y: '2014', a: 50, b: 90},
+      { y: '2015', a: 65,  b: 75},
+      { y: '2016', a: 50,  b: 50},
+      { y: '2017', a: 75,  b: 60},
+      { y: '2018', a: 80,  b: 65},
+      { y: '2019', a: 90,  b: 70},
+      { y: '2020', a: 100, b: 75},
+      { y: '2021', a: 115, b: 75},
+      { y: '2022', a: 120, b: 85},
+      { y: '2023', a: 145, b: 85},
+      { y: '2024', a: 160, b: 95}
+    ],
+    config = {
+      data: data,
+      xkey: 'y',
+      ykeys: ['a', 'b'],
+      labels: ['Общий оборот', 'Общая прибыль'],
+      fillOpacity: 0.6,
+      hideHover: 'auto',
+      behaveLikeLine: true,
+      resize: true,
+      pointFillColors:['#ffffff'],
+      pointStrokeColors: ['black'],
+      lineColors:['gray','green']
+  };
+config.element = 'area-chart';
+Morris.Area(config);*/
+
+
+/*config.element = 'line-chart';
+Morris.Line(config);
+config.element = 'bar-chart';
+Morris.Bar(config);
+config.element = 'stacked';
+config.stacked = true;
+Morris.Bar(config);
+Morris.Donut({
+  element: 'pie-chart',
+  data: [
+    {label: "Friends", value: 30},
+    {label: "Allies", value: 15},
+    {label: "Enemies", value: 45},
+    {label: "Neutral", value: 10}
+  ]
+});*/
+
+});
+</script>
+{% include "admin/adm_footer.html" %}

@@ -1,0 +1,41 @@
+{% include "admin/adm_header.html" %}
+
+<table class="adm_table" id="tablePayouts">
+	<thead class="sortable">
+		<tr>
+			<th>Пользователь</th>
+			<th class="d_none d_md_block">Метод</th>
+			<th>Сумма</th>
+			<th>Реквизиты</th>
+			<th class="d_none d_lg_block defsort">Дата</th>
+			<th class="nosort">Опции</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if empty %}
+        <tr class="empty_list"><td>Список пуст!</td></tr>
+        {% else %}
+        {% for pout in payouts %}
+        <tr>
+			<td><a href="/admin/userprofile?id={{pout.user._id}}">{{pout.user.name}}</a></td>
+			<td class="d_none d_md_block">{{langs["paymethod_"+pout.method]}}</td>
+			<td>{{pout.amount}}</td>
+			<td><span class="d_md_none">{{langs["paymethod_"+pout.method]}} </span>{{pout.requisites}}</td>
+			<td class="d_none d_lg_block">{{pout.date}}</td>
+			{% if pout.status===1 %}
+			<td class="actions">
+				<a href="/admin/approvepayout?id={{pout._id}}" class="color_green"><i class="fa fa-check"></i></a>
+				<a href="/admin/rejectpayout?id={{pout._id}}" class="color_red"><i class="fa fa-undo-alt"></i></a>
+			</td>
+			{% elseif pout.status===2 %}
+            <td class="color_green">{{langs.payout_status_2}}</td>
+            {% elseif pout.status===3 %}
+            <td class="color_red">{{langs.payout_status_3}}</td>
+            {% endif %}
+		</tr>
+        {% endfor %}
+        {% endif %}
+	</tbody>
+</table>
+{% include "./pagination.html" %}
+{% include "admin/adm_footer.html" %}

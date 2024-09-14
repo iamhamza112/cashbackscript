@@ -1,0 +1,136 @@
+{% include "admin/adm_header.html" %}
+
+<form id="form" method="post" enctype="multipart/form-data" action="/admin/api/newproduct">
+	<div class="fields_list">
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Название товара:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="name" class="field">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Магазин:
+			</div>
+			<div class="flist_right">
+				<select name="store" class="field">
+					<option value="0" selected="">-- Не выбран --</option>
+					{% for store in stores %}
+					<option value="{{store._id}}">{{store.name}}</option>
+		        	{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Категории:
+			</div>
+			<div class="flist_right">
+				<select name="categories" class="field" multiple>
+					{% for ctgr in categories %}
+						<option value="{{ctgr._id}}">{{ctgr.name}}</option>
+						{% for child in ctgr.childs %}
+						<option value="{{child._id}}"> - {{child.name}}</option>
+			        	{% endfor %}
+		        	{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Доступные страны:
+			</div>
+			<div class="flist_right">
+				<select name="countries" class="field" multiple>
+					{% include "countries.html" %}
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Картинка:
+			</div>
+			<div class="flist_right">
+				<input type="file" name="picture" class="field" accept="image/png,image/jpg,image/jpeg">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Цена товара:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="number" step="0.01" name="price" class="field">
+					<select name="price_currency">
+						<option value="USD">{{langs.currency_d}}</option>
+						<option value="RUB">{{langs.currency_r}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Кэшбэк <span class="tooltip-right" data-tooltip="Если оставить поле пустым, значение кэшбэка будет взято с выбранного магазина. Допустимые варинаты: [x], [-x], [x-y]">[?]</span>:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="text" pattern="[0-9-.]+" name="cashback" class="field">
+					<select name="cashback_k">
+						<option value="%">%</option>
+						<option value="$">{{langs.currency_d}}</option>
+						<option value="r">{{langs.currency_r}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Ссылка на страницу товара:
+			</div>
+			<div class="flist_right">
+				<input type="url" name="url" class="field" placeholder="https://">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Описание товара:
+			</div>
+			<div class="flist_right">
+
+				<div id="switchBoard">
+					<ul class="switchboard_control" id="switchBoardControl">
+						<li{% if admlang==1 %} class="selected"{% endif %}>Русский<i class="fa fa-caret-down"></i></li>
+						<li{% if admlang==2 %} class="selected"{% endif %}>English<i class="fa fa-caret-down"></i></li>
+					</ul>
+					<div class="switchboard_area{% if admlang==1 %} show{% endif %}">
+						<div class="bb_bar" id="bbTags">
+							<button type="button" data-alt="b">B</button>
+							<button type="button" data-alt="i"><i>I</i></button>
+							<button type="button" data-alt="u"><u>U</u></button>
+							<button type="button" data-alt="del"><del>S</del></button>
+							<button type="button" data-alt='a[href=""]'>URL</button>
+						</div>
+						<textarea name="desc_1" class="field"></textarea>
+					</div>
+					<div class="switchboard_area{% if admlang==2 %} show{% endif %}">
+						<div class="bb_bar" id="bbTags">
+							<button type="button" data-alt="b">B</button>
+							<button type="button" data-alt="i"><i>I</i></button>
+							<button type="button" data-alt="u"><u>U</u></button>
+							<button type="button" data-alt="del"><del>S</del></button>
+							<button type="button" data-alt='a[href=""]'>URL</button>
+						</div>
+						<textarea name="desc_2" class="field"></textarea>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div style="margin: 15px 0; text-align: center;">
+			<button type="submit" class="btn btn_info" style="padding: 0.4rem 5rem;">Добавить товар</button>
+		</div>
+	</div>
+</form>
+{% include "admin/adm_footer.html" %}

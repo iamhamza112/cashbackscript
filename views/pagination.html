@@ -1,0 +1,27 @@
+{% if pages > 1 %}
+<div class="row pagination">
+    {% if page == 1 %}
+        <a class="active">{{langs.pgn_first}}</a>
+    {% else %}
+        <a href="{{pagesUri}}">{{langs.pgn_first}}</a>
+    {% endif %}
+    {% if (pageInList !== 1) %}
+        <a class="active">...</a>
+    {% endif %}
+    {% for pitem in showPagesList %}
+        {% if (pitem == page) %}
+            <a class="active">{{pitem}}</a>
+        {% else %}
+            <a href="{{pagesUri}}p={{pitem}}">{{pitem}}</a>
+        {% endif %}
+        {% if (pitem == page + 4 && pitem < pages) %}
+            <a class="active">...</a>
+        {% endif %}
+    {% endfor %}
+    {% if (page == pages) %}
+        <a class="active">{{langs.pgn_last}}</a>
+    {% else %}
+        <a href="{{pagesUri}}p={{pages}}">{{langs.pgn_last}}</a>
+    {% endif %}
+</div>
+{% endif %}

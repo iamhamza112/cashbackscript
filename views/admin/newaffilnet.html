@@ -1,0 +1,33 @@
+{% include "admin/adm_header.html" %}
+<form id="form" method="post" enctype="multipart/form-data" action="/admin/api/newaffilnet">
+	<div class="fields_list">
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Название ПС:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="title" class="field">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Картинка:
+			</div>
+			<div class="flist_right">
+				<input type="file" name="picture" class="field" accept="image/png,image/jpg,image/jpeg">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				ID площадки:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="website_id" class="field">
+			</div>
+		</div>
+		<div style="margin: 15px 0; text-align: center;">
+			<button type="submit" class="btn btn_info" style="padding: 0.4rem 5rem;">Добавить партнерскую сеть</button>
+		</div>
+	</div>
+</form>
+{% include "admin/adm_footer.html" %}

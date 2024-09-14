@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/admin.css">
+    <link rel="stylesheet" href="/styles/plugins.css">
+    <link rel="stylesheet" href="/styles/datepicker.css">
+    <link rel="stylesheet" href="/styles/fontawesome.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon.ico">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <title>Админпанель - {{title}}</title>
+
+  </head>
+  <body>
+
+  	<div class="wrapper">
+
+	    <div class="row header" id="header">
+	    	<div class="col toggle_menu d_md_none d_lg_none d_xl_none">
+				<i class="fa fa-bars" id="adminOpenMenu"></i>
+			</div>
+			<div class="col header_logo d_none d_md_block">
+				<a href="/admin">
+					<img src="/img/admin_logo.png">
+				</a>
+			</div>
+			<div class="col header_profile_flags" id="profileNav">
+				<div class="header_flags" id="openFlags">
+					<div class="tooltip-bottom{% if admlang==1 %} current{% endif %}" data-tooltip="Русский" data-id="1"><img src="/img/flag_1.png"></div>
+					<div class="tooltip-bottom{% if admlang==2 %} current{% endif %}" data-tooltip="English" data-id="2"><img src="/img/flag_2.png"></div>
+	            </div>
+				<div class="dropdown" style="margin-right:8px">
+					<a class="dropdown_toggle arrow_right profile" id="profileLink"><img src="{{user.avatar}}">{{user.name}}</a>
+				  <div class="dropdown_menu right" id="profileDropdown">
+				  	<a href="/" target="_blank" class="color_blue"><i class="fa fa-external-link-alt"></i>Перейти на сайт</a>
+				    <div class="dropdown_divider"></div>
+				    <a href="/admin/userprofile?id={{user._id}}"><i class="fa fa-user"></i>Мой профиль</a>
+				    <a href="/admin/settings"><i class="fa fa-cog"></i>Настройки сайта</a>
+				    <div class="dropdown_divider"></div>
+				    <a href="/admin/logout" class="color_red"><i class="fa fa-sign-out-alt"></i>Выйти</a>
+				  </div>
+				</div>
+			</div>
+	    </div>
+
+	    <div class="row middle">
+	    	<div class="col d_none d_md_block sidebar" id="sidebar">
+	    		<ul class="sidebar_menu">
+	    			<li><a href="/admin"{% if path=="" %} class="active"{% endif %}><i class="fa fa-tasks"></i> Панель управления</a></li>
+	    			<li><a href="/admin/affilnets"{% if path=="affilnets" || path=="editaffilnet" || path=="newaffilnet" %} class="active"{% endif %}><i class="fa fa-handshake"></i> Партнерские сети</a></li>
+	    			<li><a href="/admin/categories"{% if path=="categories" || path=="editcategory" || path=="newcategory" %} class="active"{% endif %}><i class="fa fa-folder-open"></i> Категории</a></li>
+	    			<li><a href="/admin/shops"{% if path=="shops" || path=="editshop" || path=="newshop" %} class="active"{% endif %}><i class="fa fa-shopping-cart"></i> Магазины</a></li>
+	    			<li><a href="/admin/products"{% if path=="products" || path=="editproduct" || path=="newproduct" %} class="active"{% endif %}><i class="fa fa-cubes"></i> Товары</a></li>
+	    			<li><a href="/admin/orders"{% if path=="orders" %} class="active"{% endif %}><i class="fa fa-shopping-basket"></i> Заказы</a></li>
+	    			<li><a href="/admin/users"{% if path=="users" || path=="userprofile" || path=="edituser" %} class="active"{% endif %}><i class="fa fa-users"></i> Пользователи</a></li>
+	    			<li><a href="/admin/payouts"{% if path=="payouts" %} class="active"{% endif %}><i class="fa fa-file-invoice-dollar"></i> Выплаты</a></li>
+	    			<li><a href="/admin/discounts"{% if path=="discounts" %} class="active"{% endif %}><i class="fa fa-gift"></i> Акции и скидки</a></li>
+	    			<li><a href="/admin/settings"{% if path=="settings" %} class="active"{% endif %}><i class="fa fa-cogs"></i> Настройки</a></li>
+	    		</ul>
+	    	</div>
+	    	<div class="col content_side">
+	    		<div class="page_title">{{title}}</div>
+	    		<div id="infoBar" class="infobar"></div>
+	    		<div class="main_content" id="mainContent">

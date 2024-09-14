@@ -1,0 +1,53 @@
+{% include "admin/adm_header.html" %}
+<div class="adm_right_controls">
+	<a href="/admin/orders/wait"><i class="fa fa-clock"></i> Ожидающие</a>
+	<a href="/admin/orders/accepted"><i class="fa fa-check-circle"></i> Одобренные</a>
+	<a href="/admin/orders/rejected"><i class="fa fa-times-circle"></i> Отклоненые</a>
+	<a href="/admin/orders"><i class="fa fa-circle"></i> Все заказы</a>
+</div>
+<table class="adm_table orders_table" id="tableOrders">
+	<thead class="sortable">
+		<tr>
+			<th class="nosort">Магазин / Товар</th>
+			<th class="d_none d_lg_block">ID заказа</th>
+			<th>Пользователь</th>
+            <th class="d_none d_sm_block">Сумма</th>
+            <th>Кэшбэк</th>
+            <th>Доход</th>
+            <th class="d_none d_md_block defsort">Дата</th>
+			<th>Статус</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if empty %}
+        <tr class="empty_list"><td>Список пуст!</td></tr>
+        {% else %}
+        {% for order in orders %}
+        <tr>
+	        <td>
+				{% if order.product %}
+				<img src="/img/products/{{order.product.picture}}" title="{{order.product.name}}">
+				{% else %}
+				<a target="_blank" href="/shop?id={{order.store._id}}"><img src="/img/stores/{{order.store.picture}}" title="{{order.store.name}}"></a>
+				{% endif %}
+	        </td>
+	        <td class="d_none d_lg_block">{{order.affilnetOrderId}}</td>
+	        <td><a target="_blank" href="/admin/userprofile?id={{order.user._id}}">{{order.user.name}}</a></td>
+	        <td class="d_none d_sm_block">{{order.amount}}</td>
+	        <td>{{order.cashback}}</td>
+	        <td>{{order.profit}}</td>
+	        <td class="d_none d_md_block">{{order.date}}</td>
+	        {% if order.status===1 %}
+            <td class="color_blue">В ожидании</td>
+            {% elseif order.status===2 %}
+            <td class="color_green">Одобрен</td>
+            {% elseif order.status===3 %}
+            <td class="color_red">Отклонен</td>
+            {% endif %}
+	    </tr>
+        {% endfor %}
+        {% endif %}
+	</tbody>
+</table>
+{% include "./pagination.html" %}
+{% include "admin/adm_footer.html" %}

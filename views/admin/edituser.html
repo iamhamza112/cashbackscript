@@ -1,0 +1,132 @@
+{% include "admin/adm_header.html" %}
+{% if empty %}
+<div class="empty_list">Пользователь не найден!</div>
+{% else %}
+<form method="post" action="/admin/api/edituser" id="form">
+	<div class="fields_list">
+		<div class="fields_title">Изменение личной информации</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Имя:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="name" class="field" value="{{userData.name}}">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				E-mail:
+			</div>
+			<div class="flist_right">
+				<input type="email" name="email" class="field" value="{{userData.email}}">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Страна:
+			</div>
+			<div class="flist_right">
+				<select name="country" class="field">
+					{% include "countries.html" %}
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Пол:
+			</div>
+			<div class="flist_right">
+				<select name="gender" class="field">
+					{% if userData.gender === undefined %}<option value="0">-- Не выбран --</option>{% endif %}
+					<option value="2"{% if userData.gender === 2 %} selected{% endif %}>Мужской</option>
+					<option value="1"{% if userData.gender === 1 %} selected{% endif %}>Женский</option>
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Тип аккаунта:
+			</div>
+			<div class="flist_right">
+				<select name="account_type" class="field">
+					<option value="1">Стандарт</option>
+					<option value="2"{% if userData.status===2 %} selected{% endif %}>Бронз</option>
+					<option value="3"{% if userData.status===3 %} selected{% endif %}>Серебро</option>
+					<option value="4"{% if userData.status===4 %} selected{% endif %}>Голд</option>
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Группа:
+			</div>
+			<div class="flist_right">
+				<select name="group" class="field">
+					<option value="1">Покупатель</option>
+					<option value="2"{% if userData.group===2 %} selected{% endif %}>Модератор</option>
+					<option value="3"{% if userData.group===3 %} selected{% endif %}>Администратор</option>
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Баланс:
+			</div>
+			<div class="flist_right group2">
+				<div class="flist_inputgroup">
+					<input type="text" pattern="[0-9.]+" name="balance" class="field" value="{{userData.money}}">
+					<strong class="group_right field">{{langs.currency_d}}</strong>
+				</div>
+				<div class="flist_inputgroup">
+					<input type="text" pattern="[0-9.]+" name="balance_r" class="field" value="{{userData.money_r}}">
+					<strong class="group_right field">{{langs.currency_r}}</strong>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Холд:
+			</div>
+			<div class="flist_right group2">
+				<div class="flist_inputgroup">
+					<input type="text" pattern="[0-9.]+" name="hold" class="field" value="{{userData.hold}}">
+					<strong class="group_right field">{{langs.currency_d}}</strong>
+				</div>
+				<div class="flist_inputgroup">
+					<input type="text" pattern="[0-9.]+" name="hold_r" class="field" value="{{userData.hold_r}}">
+					<strong class="group_right field">{{langs.currency_r}}</strong>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Статус:
+			</div>
+			<div class="flist_right">
+				<select name="status" class="field">
+					<option value="1">Активен</option>
+					<option value="2"{% if userData.blocked %} selected{% endif %}>Заблокирован</option>
+				</select>
+			</div>
+		</div>
+        <div class="fields_title">Изменение пароля</div>
+          <div class="fields_list_item">
+            <div class="flist_left">Новый пароль:</div>
+            <div class="flist_right">
+              <input type="password" name="newpassword" class="field" maxlength="16">
+            </div>
+          </div>
+          <div class="fields_list_item">
+            <div class="flist_left">Повторите пароль:</div>
+            <div class="flist_right">
+              <input type="password" name="rptpassword" class="field" maxlength="16">
+            </div>
+          </div>
+		<input type="hidden" name="user_id" value="{{userData._id}}">
+		<div style="margin: 15px 0; text-align: center;">
+			<button type="submit" class="btn btn_info" style="padding: 0.4rem 5rem;">Редактировать пользователя</button>
+		</div>
+	</div>
+</form>
+{% endif %}
+{% include "admin/adm_footer.html" %}

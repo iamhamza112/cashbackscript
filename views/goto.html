@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{metaDesc || configs.metaDescDefault}}">
+    <meta name="keywords" content="{{metaKeys || configs.metaKeysDefault}}">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/themify-icons.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon.ico">
+    <title>{{configs.siteName}} - {{title}}</title>
+
+  </head>
+  
+  <body>
+
+	<div class="container">
+		<div class="infobar info fixed show cashback_activated" style="margin: 20px 0 100px 0;">
+			{{langs.cashback_is_activated}} ...
+		</div>
+	</div>
+
+	<script src="{% if test %}/js{% else %}//code.jquery.com{% endif %}/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+
+			var gotoLink = '{{goto}}';
+
+			if (!gotoLink) return;
+
+			setTimeout(function() {
+
+				window.location.href = gotoLink;
+
+			}, 2000);
+
+		})
+
+	</script>
+
+  </body>
+
+</html>

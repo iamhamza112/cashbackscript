@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{metaDesc || configs.metaDescDefault}}">
+    <meta name="keywords" content="{{metaKeys || configs.metaKeysDefault}}">
+    <meta name="yandex-verification" content="01e0709734bd26ac" />
+    <title>{{configs.siteName}} - {{title}}</title>
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/plugins.css">
+    <link rel="stylesheet" href="/styles/themify-icons.css">
+    <link rel="stylesheet" href="/styles/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon.ico">
+    <script src="{% if test %}/js{% else %}//code.jquery.com{% endif %}/jquery-3.3.1.min.js"></script>
+
+  </head>
+  
+  <body>
+
+    <div class="main_wrapper">
+
+      <div class="center_wrapper">
+
+        <header>
+          <div class="container">
+            <div class="row" style="white-space:nowrap">
+
+              <div class="col_4 header_logo">
+                <a href="/"><img src="/img/logo.png?v=1"></a>
+              </div>
+
+              <div class="col_8 header_right">
+                {% if user %}
+                <div class="header_profile_side">
+                  <div class="header_profile_balance">
+                    <div class="pbalance_aprooved tooltip-bottom" data-tooltip="{{langs.balance_tooltip}}"><i class="fas fa-dollar-sign"></i>{{user.money.toFixed(2)}}<br><i class="fas fa-ruble-sign"></i>{{user.money_r.toFixed(2)}}</div>
+                    <div class="tooltip-bottom" data-tooltip="{{langs.hold_tooltip}}"><i class="fas fa-dollar-sign"></i>{{user.hold.toFixed(2)}}<br><i class="fas fa-ruble-sign"></i>{{user.hold_r.toFixed(2)}}</div>
+                  </div>
+                  <div class="dropdown header_profile_nav">
+                    <a class="d_none d_md_block dropdown_toggle arrow_left header_profile_link" id="profileLink" href="#">{{user.name}}<img src="{{user.avatar}}"></a>
+                    <a class="d_md_none dropdown_toggle header_profile_link" id="profileLink" href="#"><i class="fa fa-user"></i></a>
+                    <div class="dropdown_menu right" id="profileDropdown">
+                      {% if user.admin %}<a href="/admin" target="_blank"><i class="fa fa-server"></i>{{langs.adminpanel}}</a>{% endif %}
+                      <a href="/profile"><i class="fa fa-user"></i>{{langs.my_cabinet}}</a>
+                      <a href="/profile/orders"><i class="fa fa-shopping-basket"></i>{{langs.my_orders}}</a>
+                      <a href="/profile/requisites"><i class="fa fa-tasks"></i>{{langs.my_requisites}}</a>
+                      <a href="/profile/payouts"><i class="fa fa-history"></i>{{langs.payout_history}}</a>
+                      <a href="/profile/payout"><i class="fa fa-money-check-alt"></i>{{langs.payout}}</a>
+                      <a href="/profile/settings"><i class="fa fa-cog"></i>{{langs.profile_settings}}</a>
+                      <div class="dropdown_divider"></div>
+                      <a href="/logout" class="color_red"><i class="fa fa-sign-out-alt"></i>{{langs.logout}}</a>
+                    </div>
+                  </div>
+                </div>
+                {% else %}
+                <div class="header_signin_side">
+                  <button type="button" class="btn btn_primary" id="signinButton">{{langs.signin}}</button>
+                  <button type="button" class="btn btn_primary" id="signupButton">{{langs.signup}}</button>
+                </div>
+                {% endif %}
+
+                <div class="header_mobile_menu_side">
+                  <a class="d_md_none header_mobile_menu_link" id="openMenuMobile" href="#"><i class="fa fa-bars"></i></a>
+                </div>
+
+                <!--<div class="dropdown header_flags" id="dropdownFlags">
+                  <div class="dropdown_toggle arrow_right flag_current" id="currentFlag"><img src="/img/flag_{{lang}}.png"></div>
+                  <div class="dropdown_menu right flag_dropdown" id="langFlags">
+                    <a data-id="3"><img src="/img/flag_3.png"> English</a>
+                    <a data-id="2"><img src="/img/flag_2.png"> Русский</a>
+                    <a data-id="1"><img src="/img/flag_1.png"> Հայերեն</a>
+                  </div>
+                </div>-->
+              </div>
+
+            </div>
+          </div>
+        </header>
+
+        <div class="container_fluid second_header">
+          <div class="container">
+            <div class="row">
+              <div class="col_lg_auto">
+                <nav class="horizontal_menu" id="horizontalMenu">
+                  <ul>
+                    <li class="d_none d_md_block"><a href="/" style="font-size:30px;padding:10px 20px"><i class="fa fa-home"></i></a></li>
+                    <li><a href="/shops">{{langs.cashback_stores}}</a></li>
+                    <li><a href="/hot_deals" class="with_img"><img src="/img/hot_deals_icon.png">{{langs.hot_deals}}</a></li>
+                    <!--<li><a href="#">Все товары <i class='fa fa-angle-down'></i></a>
+                      <ul class="submenu">
+                        <li><a href="#">Товар</a></li>
+                        <li><a href="#">Товар</a></li>
+                        <li><a href="#">Товар</a></li>
+                      </ul>
+                    </li>-->
+                    <li><a href="/howitworks">{{langs.how_it_works}}</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="col_lg searchbar">
+                <form action="/search">
+                  <input type="search" name="search" class="field" placeholder="{{langs.search_shops}}...">
+                  <input type="submit" class="btn btn_info" value="{{langs.search}}">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main_content" id="mainContent">

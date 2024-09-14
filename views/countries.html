@@ -1,0 +1,8 @@
+{% if countries.allItem %}
+    <option value="all"{% if countries.selectedCodes.length===0 || countries.selectedCodes.0==="all" %} selected{% endif %}>Все страны</option>
+{% else %}
+    <option value="0"{% if countries.selectedCodes.length===0 %} selected{% endif %}>-- Не выбрана --</option>
+{% endif %}
+{% for code, name in countries.data %}
+    <option value="{{code}}"{% if code in countries.selectedCodes %} selected{% endif %}>{{name}}</option>
+{% endfor %}

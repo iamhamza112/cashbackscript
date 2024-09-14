@@ -1,0 +1,134 @@
+{% include "admin/adm_header.html" %}
+<form method="post" action="/admin/api/settings" id="adminSettings">
+	<div class="fields_list">
+		<div class="fields_title">Настройки сайта</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Название сайта:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="sitename" class="field" value="{{configs.siteName}}">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Описание (Meta):
+			</div>
+			<div class="flist_right">
+				<input type="text" name="metadescdefault" class="field" value="{{configs.metaDescDefault}}">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Ключевые слова (Meta):
+			</div>
+			<div class="flist_right">
+				<input type="text" name="metakeysdefault" class="field" value="{{configs.metaKeysDefault}}">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Минимальная выплата:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="number" step="0.1" name="minpayout" class="field" value="{{configs.minPayout}}">
+					<strong class="group_right field">$</strong>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Доля пользователя от нашего дохода:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="number" step="0.1" name="userprocent" class="field" value="{{configs.userProcent}}">
+					<strong class="group_right field">%</strong>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				E-mail тех. поддержки:
+			</div>
+			<div class="flist_right">
+				<input type="email" name="supportmail" class="field" value="{{configs.supportMail}}">
+			</div>
+		</div>
+		<div class="fields_title">Настройки типов аккаунтов</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Получить Бронз <span class="tooltip-right" data-tooltip="Пользователь получит аккаунт Бронз, если заработает {{configs.getAccountType2}} $ или больше">[?]</span>:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="number" step="0.1" name="accounttype2" class="field" value="{{configs.getAccountType2}}">
+					<strong class="group_right field">$</strong>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Получить Серебро <span class="tooltip-right" data-tooltip="Пользователь получит аккаунт Серебро, если заработает {{configs.getAccountType3}} $ или больше">[?]</span>:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="number" step="0.1" name="accounttype3" class="field" value="{{configs.getAccountType3}}">
+					<strong class="group_right field">$</strong>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Получить Голд <span class="tooltip-right" data-tooltip="Пользователь получит Голд аккаунт, если заработает {{configs.getAccountType4}} $ или больше">[?]</span>:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="number" step="0.1" name="accounttype4" class="field" value="{{configs.getAccountType4}}">
+					<strong class="group_right field">$</strong>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Рост кэшбэка <span class="tooltip-right" data-tooltip="Рост дольи кэшбэка пользователя в процентах на каждый тип аккаунта">[?]</span>:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="number" step="0.1" name="userProcentGrowth" class="field" value="{{configs.userProcentGrowth}}">
+					<strong class="group_right field">%</strong>
+				</div>
+			</div>
+		</div>
+		<div class="fields_title">Изменение пароля админпанельи</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Старый пароль администратора:
+			</div>
+			<div class="flist_right">
+				<input type="password" name="oldpassword" class="field">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Новый пароль администратора:
+			</div>
+			<div class="flist_right">
+				<input type="password" name="newpassword" class="field">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Повторите новый пароль:
+			</div>
+			<div class="flist_right">
+				<input type="password" name="newpassword2" class="field">
+			</div>
+		</div>
+		<div style="margin: 15px 0; text-align: center;">
+			<button type="submit" class="btn btn_info" style="padding: 0.4rem 5rem;">Сохранить изменения</button>
+		</div>
+	</div>
+</form>
+{% include "admin/adm_footer.html" %}

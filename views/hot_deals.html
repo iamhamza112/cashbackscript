@@ -1,0 +1,73 @@
+{% include "header.html" %}
+
+<div class="container">
+  <div class="row shops_middle">
+    <div class="col_12 col_md_8 col_lg_9 shops_content">
+
+      {% include "navbar.html" %}
+
+      <h2><i class="fa fa-folder-open"></i> {{langs.hot_deals}}</h2>
+
+      <table class="sorting">
+        <thead class="sortable">
+          <tr>
+            <th class="nosort d_none d_lg_block">{{langs.sort_by}}</th>
+            <th>{{langs.sort_name}}</th>
+            <th>{{langs.sort_price}}</th>
+            <th class="defsort">{{langs.sort_date}}</th>
+            <th>{{langs.sort_cashback}}</th>
+            <th>{{langs.sort_purchases}}</th>
+          </tr>
+        </thead>
+      </table>
+
+      <div class="row products_list">
+        {% if catgoryDesc %}<div class="page_bottom_desc">{{catgoryDesc}}</div>{% endif %}
+        {% if empty %}
+          <div class="empty_list">{{langs.empty_list}}</div>
+        {% elseif searchError %}
+          <div id="infoBar" class="infobar error fixed show" style="width:100%">{{langs.info_search_grt_then}}</div>
+        {% elseif searchEmpty %}
+          <div id="infoBar" class="infobar error fixed show" style="width:100%">{{langs.info_search_empty}}</div>
+        {% else %}
+        {% for product in products %}
+
+        <div class="row product_item">
+        <div class="col_4 product_image"><img src="{{product.picture}}"></div>
+        <div class="col_8 product_right">
+	        <h3 class="product_name" title="{{product.name}}">{{product.name}}</h3>
+	        <div class="product_info">
+		        <div class="product_price">{{langs.price}}{{langs.colon}}<br>
+              {% if product.oldPrice %}<del class="d_sm_none d_md_iblock">{{product.oldPrice}}</del>{% endif %}
+              <strong>{{product.price}} {{product.currency}}</strong>
+            </div>
+		        <div class="product_cashback">
+		          	{{langs.cashback}}{{langs.colon}}<br>
+		          	{% if product.discount_cashback %}
+			          <strong><del>{{product.cashback}}</del> {{product.discount_cashback}}</strong>
+			          {% else %}
+			          <strong>{{product.cashback}}</strong>
+			          {% endif %}
+		      	</div>
+	        </div>
+	        <div class="product_goto">
+            {% if user && user.noverified===undefined %}
+            <a href="{{product.url}}?subid={{user._id}}&subid1={{product._id}}&subid2=2" rel="nofollow" target="_blank" data-id="{{product._id}}" id="goTo" class="btn {% if product.isActivated %}btn_success activated{% else %}btn_secondary{% endif %}">{{langs.buy_with_cashback}}</a>
+            {% else %}
+            <a href="{{product.url}}" rel="nofollow" target="_blank" class="btn btn_secondary">{{langs.goto_shop}}</a>
+            {% endif %}
+          </div>
+	    </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+      </div>
+      {% include "pagination.html" %}
+    </div>
+    <div class="col_12 col_md_4 col_lg_3 sidebar">
+      {% include "sidebar.html" %}
+    </div>
+  </div>
+</div>
+{% include "footer.html" %}

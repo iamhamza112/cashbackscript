@@ -1,0 +1,42 @@
+{% include "admin/adm_header.html" %}
+
+<table class="adm_table" id="tableUsers">
+	<thead class="sortable">
+		<tr>
+			<th>Имя</th>
+			<th>E-mail</th>
+			<th>Страна</th>
+			<th>Баланс</th>
+			<th>Холд</th>
+			<th>Покупки</th>
+			<th class="defsort">Дата регистрации</th>
+			<th>Статус</th>
+			<th class="nosort">Опции</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if empty %}
+        <tr class="empty_list"><td>Список пуст!</td></tr>
+        {% else %}
+        {% for user in users %}
+        <tr>
+			<td>{{user.name}}</td>
+			<td>{{user.email || " - "}}</td>
+			<td>{{user.country || " - "}}</td>
+			<td>{{user.money}} {{langs.currency_d}} <span style="color:#bbb">|</span> {{user.money_r}} {{langs.currency_r}}</td>
+			<td>{{user.hold}} {{langs.currency_d}} <span style="color:#bbb">|</span> {{user.hold_r}} {{langs.currency_r}}</td>
+			<td>{{user.purchases || 0}}</td>
+			<td>{{user.regDate}}</td>
+			{% if user.blocked %}<td class="color_red">Заблокирован</td>{% else %}<td class="color_green">Активно</td>{% endif %}
+			<td class="actions">
+				<a href="/admin/userprofile?id={{user._id}}"><i class="fa fa-search"></i></a>
+				<a href="/admin/edituser?id={{user._id}}"><i class="fa fa-edit"></i></a>
+				<a href="#" id="deleteUser" data-id="{{user._id}}"><i class="fa fa-trash-alt"></i></a>
+			</td>
+		</tr>
+        {% endfor %}
+        {% endif %}
+	</tbody>
+</table>
+{% include "./pagination.html" %}
+{% include "admin/adm_footer.html" %}

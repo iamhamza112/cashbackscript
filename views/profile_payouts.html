@@ -1,0 +1,58 @@
+{% include "header.html" %}
+<div class="container">
+
+  {% include "navbar.html" %}
+
+  <div class="row">
+
+    {% include "profile_sidebar.html" %}
+
+    <div class="col_sm_8 col_lg_9 profile_right">
+
+      {% include "noverified.html" %}
+
+      <h4>{{langs.profile_title}} {{user.name}}</h4>
+
+      {% include "profile_balance.html" %}
+
+      <h3>{{langs.payout_history}}{{langs.colon}}</h3>
+
+      <table id="payouts">
+        <thead class="sortable">
+          <tr>
+            <th>{{langs.method}}</th>
+            <th>{{langs.requisites}}</th>
+            <th>{{langs.amount}}</th>
+            <th class="defsort">{{langs.date}}</th>
+            <th>{{langs.status}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if empty %}
+          <tr class="empty_list"><td>{{langs.empty_list}}</td></tr>
+          {% else %}
+          {% for pout in payouts %}
+          <tr>
+            <td>{{langs["paymethod_"+pout.method]}}</td>
+            <td>{{pout.requisites}}</td>
+            <td>{{pout.amount}}</td>
+            <td>{{pout.date}}</td>
+            {% if pout.status===1 %}
+            <td class="color_blue">{{langs.payout_status_1}}</td>
+            {% elseif pout.status===2 %}
+            <td class="color_green">{{langs.payout_status_2}}</td>
+            {% elseif pout.status===3 %}
+            <td class="color_red">{{langs.payout_status_3}}</td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+{% include "footer.html" %}

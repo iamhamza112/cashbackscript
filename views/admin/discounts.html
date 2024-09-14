@@ -1,0 +1,23 @@
+{% include "admin/adm_header.html" %}
+
+<div class="discounts">
+	{% for dcount in discounts %}
+	<div class="row discount{% if dcount.status===1 %} active{% endif %}">
+		<div class="col_6 col_lg_7 left">{{langs["discount_desc_"+dcount.id]}}</div>
+		<div class="col_6 col_lg_5 right">
+			<form method="post" action="/admin/api/discount_switch">
+				<input type="hidden" name="discount_id" value="{{dcount.id}}">
+				{% if dcount.status===1 %}
+				<span class="tooltip-bottom" data-tooltip="Дата оканчания акции"><input type="text" class="field date" value="{{dcount.endDate}}" disabled></span>
+				<button class="btn btn_danger" type="submit" name="discount_switch" value="off">Отключить</button>
+				{% else %}
+				<input type="text" class="field date" name="discount_enddate" placeholder="до числа" data-toggle="datepicker" autocomplete="off" required>
+				<button class="btn btn_success" type="submit" name="discount_switch" value="on">Включить</button>
+				{% endif %}
+			</form>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% include "admin/adm_footer.html" %}

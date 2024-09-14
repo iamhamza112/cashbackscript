@@ -1,0 +1,5 @@
+{% if user.noverified %}
+<div class="infobar info fixed show"><b>{{langs.info_not_activated_title}}</b> {{langs.info_not_activated_content_1}} <b>{{user.email}}</b> {{langs.info_not_activated_content_2}}</div>
+{% elseif verifing %}
+<div class="infobar success fixed show"><b>{{langs.info_activated_title}}</b> {{langs.info_activated_content}}</div>
+{% endif %}

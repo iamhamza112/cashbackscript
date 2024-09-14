@@ -1,0 +1,140 @@
+{% include "header.html" %}
+<div class="container">
+
+  {% include "navbar.html" %}
+
+  <div class="row">
+
+    {% include "profile_sidebar.html" %}
+
+    <div class="col_12 col_sm_8 col_lg_9 profile_right">
+
+      {% include "noverified.html" %}
+
+      <h4>{{langs.profile_title}} {{user.name}}</h4>
+
+      {% include "profile_balance.html" %}
+
+      <div class="profile_states">
+        <h4><i class="fas fa-chart-bar"></i> {{langs.profile_states_title}}</h4>
+        <div class="profile_states_cont">
+          <div class="pstates_l">{{langs.profile_states_purch_count}}</div><div class="pstates_r">{{purchasesCount}}</div>
+          <div class="pstates_l">{{langs.profile_states_earn_today}}</div><div class="pstates_r">{{todayProfit}} {{langs.currency_d}} <span style="color:#8597b5">|</span> {{todayProfit_r}} {{langs.currency_r}}</div>
+          <div class="pstates_l">{{langs.profile_states_earn_yesterday}}</div><div class="pstates_r">{{yesterdayProfit}} {{langs.currency_d}} <span style="color:#8597b5">|</span> {{yesterdayProfit_r}} {{langs.currency_r}}</div>
+          <div class="pstates_l">{{langs.profile_states_payout_total}}</div><div class="pstates_r">{{user.payout}} {{langs.currency_d}} <span style="color:#8597b5">|</span> {{user.payout_r}} {{langs.currency_r}}</div>
+          <div class="pstates_l">{{langs.profile_states_earn_total}}</div><div class="pstates_r">{{totalProfit}} {{langs.currency_d}} <span style="color:#8597b5">|</span> {{totalProfit_r}} {{langs.currency_r}}</div>
+        </div>
+      </div>
+
+      <div class="charts">
+        <h4><i class="fas fa-chart-area"></i> {{langs.states_chart_title}}</h4>
+        <div class="chart_cont">
+          <div id="chartArea"></div>
+        </div>
+      </div>
+
+      <h4><i class="fa fa-boxes"></i> {{langs.statusbar_title}}</h4>
+      <div class="status_bar">
+        <div class="status_bar_types">
+          <div class=""><img src="/img/status_1.png"><br>{{langs.account_type_1}}</div>
+          <div class=""><img src="/img/status_2.png"><br>{{langs.account_type_2}} [+{{(configs.userCashbackProcentGrowth).toFixed(0)}}%]</div>
+          <div class=""><img src="/img/status_3.png"><br>{{langs.account_type_3}} [+{{(configs.userCashbackProcentGrowth*2).toFixed(0)}}%]</div>
+          <div class=""><img src="/img/status_4.png"><br>{{langs.account_type_4}} [+{{(configs.userCashbackProcentGrowth*3).toFixed(0)}}%]</div>
+        </div>
+        <div class="status_bar_indicators">
+          <div class="{% if user.status>1 %}active{% elseif user.status==1 %}active_last{% endif %}">
+            <div class="sb_circle"></div>
+            <div class="sb_line_right"></div>
+          </div>
+          <div class="{% if user.status>2 %}active{% elseif user.status==2 %}active_last{% endif %}">
+            <div class="sb_line_left"></div>
+            <div class="sb_circle"></div>
+            <div class="sb_line_right"></div>
+          </div>
+          <div class="{% if user.status>3 %}active{% elseif user.status==3 %}active_last{% endif %}">
+            <div class="sb_line_left"></div>
+            <div class="sb_circle"></div>
+            <div class="sb_line_right"></div>
+          </div>
+          <div class="{% if user.status>4 %}active{% elseif user.status==4 %}active_last{% endif %}">
+            <div class="sb_line_left"></div>
+            <div class="sb_circle"></div>
+          </div>
+        </div>
+        <div class="status_bar_limits">
+          <div>-</div>
+          <div>{{configs.getAccountType2}} $</div>
+          <div>{{configs.getAccountType3}} $</div>
+          <div>{{configs.getAccountType4}} $</div>
+        </div>
+      </div>
+      {% if user.status!==4 %}<div class="infobar yellow fixed show">{{langs.info_get_next_type_remain}} <b>{{user.typeChangeRemain}} {{langs.currency_d}}</b> {{langs.or}} <b>{{user.typeChangeRemain_r}} {{langs.currency_r}}</b></div>{% endif %}
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
+<script>
+$(document).ready(function() {
+
+  $.ajax({
+
+    type: "POST",
+
+    url: "/api/getStatesGraphic",
+    
+    data: JSON.stringify({}),
+
+    contentType: "application/json; charset=utf-8",
+
+    dataType: "json",
+
+    success: function(data) {
+
+      if (!data || data.error) {
+
+          if (!data) data = {error: "Error!"};
+
+          return console.log("Error: ", data.error);
+
+      }
+
+      var config = {
+
+        data: data,
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['USD', 'RUB'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        resize: true,
+        parseTime: false,
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['#58a728', '#586882']
+
+      };
+
+      config.element = 'chartArea';
+
+      Morris.Area(config);
+
+    },
+
+    failure: function(errMsg) {
+
+        console.log("Error: ", errMsg);
+
+    }
+
+});
+
+});
+</script>
+
+{% include "footer.html" %}

@@ -1,0 +1,9 @@
+{% include "mail_header.html" %}
+
+<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 15px;"><span class="preheader">Начислен кэшбэк!</span></p>
+<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+{{langs.cashback_to_hold_1_1}} {{userName}},<br> {{langs.cashback_to_hold_1_2}} <b>{{userProfit}} {{currency}}</b>{{langs.cashback_to_hold_1_3}}<br>{{langs.cashback_to_hold_2}}</p>
+</table>
+<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"><b>{{langs.footer_note}}</b> {{langs.footer_note_text}}</p>
+                      
+{% include "mail_footer.html" %}

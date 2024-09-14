@@ -1,0 +1,41 @@
+{% include "header.html" %}
+<div class="container">
+
+  {% include "navbar.html" %}
+
+  <div class="row">
+
+    {% include "profile_sidebar.html" %}
+
+    <div class="col_sm_8 col_lg_9 profile_right">
+
+      {% include "noverified.html" %}
+
+      <h4>{{langs.profile_title}} {{user.name}}</h4>
+
+      {% include "profile_balance.html" %}
+
+      <h3>{{langs.my_requisites_title}}</h3>
+
+      <div class="payout_requisites" id="payoutRequisites">
+        {% for requisite in configs.payoutSystems %}
+        {% set requisVal = user.requisites[requisite.name] %}
+        {% set requisOut = (requisVal.val_1) ? requisVal.val_1 + ", " + requisVal.val_2 : requisVal %}
+        <div class="row">
+          <div class="payreq_icon"><img src="/img/payment_{{requisite.id}}.png"></div>
+          <div class="payreq_name">{{langs["paymethod_"+requisite.name]}}</div>
+          <div class="payreq_reqs">{{requisOut || "_"}}</div>
+          <div class="payreq_action">
+            {% if requisOut %}<button class="btn btn_warning" data-id="{{requisite.id}}">{{langs.edit}}</button>
+            {% else %}<button class="btn btn_danger" data-id="{{requisite.id}}">{{langs.add}}</button>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+{% include "footer.html" %}

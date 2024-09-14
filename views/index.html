@@ -1,0 +1,160 @@
+{% include "header.html" %}
+<div class="container_fluid top_welcome_box">
+  <div class="container">
+    <h3 class="top_welcome_text">{{langs.welbox_title}} {{configs.siteName}}</h3>
+    <div class="row welcome_box">
+
+        <div class="col_12 col_sm_6 col_lg_3">
+          <div class="welcome_box_icon">
+            <i class="fa fa-shopping-cart"></i>
+          </div>
+          <div class="welcome_box_text">
+            <h4>{{langs.welbox_1_1}}</h4>
+            <p>{{langs.welbox_1_2}}</p>
+          </div>
+        </div>
+
+
+        <div class="col_12 col_sm_6 col_lg_3">
+          <div class="welcome_box_icon">
+            <i class="fa fa-shopping-basket"></i>
+          </div>
+          <div class="welcome_box_text">
+            <h4>{{langs.welbox_2_1}}</h4>
+            <p>{{langs.welbox_2_2}}</p>
+          </div>
+        </div>
+
+
+        <div class="col_12 col_sm_6 col_lg_3">
+          <div class="welcome_box_icon">
+            <i class="fa fa-hand-holding-usd"></i>
+          </div>
+          <div class="welcome_box_text">
+            <h4>{{langs.welbox_3_1}}</h4>
+            <p>{{langs.welbox_3_2}}</p>
+          </div>
+        </div>
+
+
+        <div class="col_12 col_sm_6 col_lg_3">
+          <div class="welcome_box_icon">
+            <i class="fa fa-money-check-alt"></i>
+          </div>
+          <div class="welcome_box_text">
+            <h4>{{langs.welbox_4_1}}</h4>
+            <p>{{langs.welbox_4_2}}</p>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div>
+    <a href="http://localhost:3000/shop?id=UXN7QBKNfLKzYyqE"><img src="/img/slide_2.jpg?v=2" style="width: 100%;"></a>
+  </div>
+
+  <!--
+  <div data-fadeshow="quick-nav prev-next-nav slide-counter autoplay ken-burns">
+
+    {% if discounts.0 %}
+    <input type="radio" name="css-fadeshow" id="fs-slide-1" />
+    {% endif %}
+    <input type="radio" name="css-fadeshow" id="fs-slide-2" />
+
+
+    <div class="fs-slides">
+
+      {% if discounts.0 %}
+      <div class="fs-slide">
+        <div class="fs-slide-bg" style="background-image:url(/img/slide_1.jpg)"></div>
+        <div class="slide-content slide-content-1">
+          <h1>{{langs.cashback}} + 50 %</h1>
+          <p>{{langs.discount_desc_1}}</p>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="fs-slide">
+        <div class="fs-slide-bg" style="background-image:url(/img/slide_2.jpg?v=1)"></div>
+        <div class="slide-content slide-content-2">
+          <h1></h1>
+          <p>{{langs.slide_desc_1}}</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="fs-quick-nav">
+      {% if discounts.0 %}
+      <label class="fs-quick-btn" for="fs-slide-1"></label>
+      {% endif %}
+      <label class="fs-quick-btn" for="fs-slide-2"></label>
+    </div>
+
+
+    <div class="fs-prev-nav">
+      {% if discounts.0 %}
+      <label class="fs-prev-btn" for="fs-slide-1"></label>
+      {% endif %}
+      <label class="fs-prev-btn" for="fs-slide-2"></label>
+    </div>
+
+
+    <div class="fs-next-nav">
+      {% if discounts.0 %}
+      <label class="fs-next-btn" for="fs-slide-1"></label>
+      {% endif %}
+      <label class="fs-next-btn" for="fs-slide-2"></label>
+    </div>
+
+
+    <div class="fs-slide-counter">
+      <span class="fs-slide-counter-current"></span>/<span class="fs-slide-counter-total"></span>
+    </div>
+
+  </div>-->
+</div>
+
+<div class="container">
+  <div class="row shops_middle">
+    <div class="col_12 shops_content main_page">
+
+      {% include "noverified.html" %}
+
+      <h2><i class="fa fa-certificate"></i> {{langs.top_cashback_shops}}</h2>
+
+      <div class="row shops_list">
+
+        {% if empty %}
+          <div class="empty_list">{{langs.empty_list}}</div>
+        {% else %}
+        {% for store in stores %}
+        <div class="shop_item">
+          <a href="/shop?id={{store._id}}">
+            <div class="shop_image"><img src="/img/stores/{{store.picture}}"></div>
+            <h3 class="shop_name">{{store.name}}</h3>
+            <div class="shop_info">
+              {% if store.discount_cashback %}
+              <strong><del>{{store.cashback}}</del><br>{{store.discount_cashback}}</strong>
+              {% else %}
+              <strong>{{store.cashback}}</strong>
+              {% endif %}
+              <br>{{langs.cashback}}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+        
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+{% include "footer.html" %}

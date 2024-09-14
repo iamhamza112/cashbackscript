@@ -1,0 +1,87 @@
+<div class="notifications" id="notifs">
+            
+  {% include "signin.html" %}
+
+  {% if user %}
+  <div class="notif_set_requisite" data-id="requisite_1">
+  		<div class="close_window" id="closeWindow" title="{{langs.close}}"></div>
+      <h3>{{langs.requisites}} {{langs.paymethod_yandex}}{{langs.colon}}</h3>
+      <form method="post" action="/api/requisite">
+	      <p>{{langs.requisites_yandex_input}}<br><input type="text" name="requisite" class="field" value="{{user.requisites.yandex}}" placeholder="{{langs.example}} 414012754679017" required>
+          <input type="hidden" name="id" value="1"></p>
+	      <p><button type="submit" class="btn btn_info">{{langs.save_requisites}}</button></p>
+	  </form>
+  </div>
+
+  <div class="notif_set_requisite" data-id="requisite_2">
+  	<div class="close_window" id="closeWindow" title="{{langs.close}}"></div>
+      <h3>{{langs.requisites}} {{langs.paymethod_wmr}}{{langs.colon}}</h3>
+      <form method="post" action="/api/requisite">
+	      <p>{{langs.requisites_wmr_input}}<br><input type="text" name="requisite" class="field" value="{{user.requisites.wmr}}" placeholder="{{langs.example}} R123456123456" required>
+        <input type="hidden" name="id" value="2"></p>
+	      <p><button type="submit" class="btn btn_info">{{langs.save_requisites}}</button></p>
+	  </form>
+  </div>
+
+  <div class="notif_set_requisite" data-id="requisite_3">
+  	<div class="close_window" id="closeWindow" title="{{langs.close}}"></div>
+      <h3>{{langs.requisites}} {{langs.paymethod_wmz}}{{langs.colon}}</h3>
+      <form method="post" action="/api/requisite">
+	      <p>{{langs.requisites_wmz_input}}<br><input type="text" name="requisite" class="field" value="{{user.requisites.wmz}}" placeholder="{{langs.example}} Z123456123456" required>
+        <input type="hidden" name="id" value="3"></p>
+	      <p><button type="submit" class="btn btn_info">{{langs.save_requisites}}</button></p>
+	  </form>
+  </div>
+
+  <div class="notif_set_requisite" data-id="requisite_4">
+  	<div class="close_window" id="closeWindow" title="{{langs.close}}"></div>
+      <h3>{{langs.requisites}} {{langs.paymethod_qiwi}}{{langs.colon}}</h3>
+      <form method="post" action="/api/requisite">
+	      <p>{{langs.requisites_qiwi_input}}<br><input type="text" name="requisite" class="field" value="{{user.requisites.qiwi}}" placeholder="{{langs.example}} +79112312312" required><input type="hidden" name="id" value="4"></p>
+	      <p><button type="submit" class="btn btn_info">{{langs.save_requisites}}</button></p>
+	  </form>
+  </div>
+
+  <div class="notif_set_requisite" data-id="requisite_5">
+  	<div class="close_window" id="closeWindow" title="{{langs.close}}"></div>
+      <h3>{{langs.requisites_bankcard_title}}</h3>
+      <form method="post" action="/api/requisite">
+	      <p>{{langs.requisites_bankcard_input}}<br><input type="text" name="requisite" class="field" value="{{user.requisites.bankcard.val_1}}" placeholder="{{langs.example}} 4024 0045 8027 3428" required></p>
+	      <p>{{langs.requisites_bankcard_input_2}}<br><input type="text" name="requisite_2" class="field" value="{{user.requisites.bankcard.val_2}}" placeholder="Jhon Smith" required></p>
+        <input type="hidden" name="id" value="5">
+	      <p><button type="submit" class="btn btn_info">{{langs.save_requisites}}</button></p>
+	  </form>
+  </div>
+
+  <div class="notif_set_requisite" data-id="requisite_6">
+    <div class="close_window" id="closeWindow" title="{{langs.close}}"></div>
+      <h3>{{langs.requisites}} {{langs.paymethod_paypal}}{{langs.colon}}</h3>
+      <form method="post" action="/api/requisite">
+        <p>{{langs.requisites_paypal_input}}<br><input type="email" name="requisite" class="field" value="{{user.requisites.paypal}}" placeholder="{{langs.example}} example@gmail.com" required>
+          <input type="hidden" name="id" value="6"></p>
+        <p><button type="submit" class="btn btn_info">{{langs.save_requisites}}</button></p>
+    </form>
+  </div>
+
+  <div class="notif_payout" data-id="payout">
+  	<div class="close_window" id="closeWindow" title="{{langs.close}}"></div>
+      <h3>{{langs.write_payout_amount}}</h3>
+      <form method="post" action="/api/payout">
+      	<p><div class="flist_inputgroup">
+			<input type="number" name="amount" class="field" id="payoutNotifInfoMoney" value="0" required>
+      <input type="hidden" name="currency" id="payoutNotifInfoCurrency">
+			<strong class="group_right field" id="payoutNotifInfoCurrencyLang"></strong>
+		</div></p>
+    <input type="hidden" name="id" id="payoutNotifInfoId">
+		<p>{{langs.minamount_for_payout}} <b>{{configs.minPayout}} {{langs.currency_d}}</b> {{langs.or}} <b>{{configs.minPayout_r}} {{langs.currency_r}}</b></p>
+		<hr>
+		<p>{{langs.payout_method}} <b id="payoutNotifInfoMethod"></b></p>
+      	<p>{{langs.requisites}}{{langs.colon}} <b id="payoutNotifInfoRequisites"></b></p>
+	    <p><button type="submit" class="btn btn_success">{{langs.withdraw_funds}}</button></p>
+	  </form>
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="deep_overlay" id="deepOverlay"></div>

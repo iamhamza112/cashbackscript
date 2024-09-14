@@ -1,0 +1,28 @@
+    <div class="col_sm_4 col_lg_3 profile_left">
+      <div class="profile_image" id="profileImage">
+        <div id="photoLoader" class="photo_loader">Loading...</div>
+        <img src="{{user.avatar}}">
+        <div class="change_avatar" id="changePhotoBut">{{langs.change_photo}}</div>
+        <form id="changePhotoForm" enctype="multipart/form-data" method="post" action="/api/changePhoto">
+            <input type="file" name="photo" id="photoFile" class="photo_file" accept="image/png,image/jpg,image/jpeg">
+        </form>
+      </div>
+      <div class="profile_type status_{{user.status || 1}}">
+        <div class="left"><img src="/img/status_{{user.status || 1}}.png"></div>
+        <div class="right">
+          {{langs.account_type}}<br><strong>
+          {% if user.status===4 %}{{langs.account_type_4}}{% elseif user.status===3 %}{{langs.account_type_3}}{% elseif user.status===2 %}{{langs.account_type_2}}{% else %}{{langs.account_type_1}}{% endif %}
+        </strong><br>
+        </div>
+      </div>
+      
+      <div class="d_none d_sm_block profile_menu">
+        <a href="/profile"><i class="fa fa-chart-bar"></i>{{langs.profile_states_title}}</a>
+        <a href="/profile/orders"><i class="fa fa-shopping-basket"></i>{{langs.my_orders}}</a>
+        <a href="/profile/requisites"><i class="fa fa-tasks"></i>{{langs.my_requisites}}</a>
+        <a href="/profile/payouts"><i class="fa fa-history"></i>{{langs.payout_history}}</a>
+        <a href="/profile/payout"><i class="fa fa-money-check-alt"></i>{{langs.payout}}</a>
+        <a href="/profile/settings"><i class="fa fa-cog"></i>{{langs.profile_settings}}</a>
+        <a href="/logout" class="color_red d_none d_sm_block"><i class="fa fa-sign-out-alt"></i>{{langs.logout}}</a>
+      </div>
+    </div>

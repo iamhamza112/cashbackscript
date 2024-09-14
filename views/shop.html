@@ -1,0 +1,98 @@
+{% include "header.html" %}
+<div class="container">
+  
+  {% include "navbar.html" %}
+
+  <div class="row">
+
+    <div class="col_12 col_md_5 col_lg_4 shop_item_lside">
+      <img class="shop_logo" src="/img/stores/{{store.picture}}">
+      <div class="shop_cashback_info">
+        {{langs.cashback}}
+        {% if store.discount_cashback %}
+        <strong><del>{{store.cashback}}</del> {{store.discount_cashback}}</strong>
+        {% else %}
+        <strong>{{store.cashback}}</strong>
+        {% endif %}
+      </div>
+      {% if user && user.noverified===undefined %}
+      <a href="{{store.url}}?subid={{user._id}}&subid1={{store._id}}&subid2=1" rel="nofollow" target="_blank" id="goTo" class="btn shop_buy {% if isActivated %}btn_success activated{% else %}btn_danger{% endif %}">{{langs.buy_with_cashback}}<strong><br>{{langs.cashback_is_activated_short}}</strong></a>
+      {% else %}
+      <a href="{{store.url}}?subid1={{store._id}}&subid2=1" rel="nofollow" target="_blank" class="btn btn_danger shop_buy">{{langs.goto_shop}}</a>
+      <div id="infoBar" class="infobar yellow fixed show"><b>{{langs.attention}}</b> {{langs.info_auth_for_get_cashback}}</div>
+      {% endif %}
+      <div class="shop_mini_info">{{langs.can_depend_on_product}}</div>
+
+      <div class="shop_conditions">
+        <h5><i class="fa fa-info-circle"></i> {{langs.cashback_conditions}}</h5>
+
+        <div class="shop_cond_item">
+          <div class="shop_cond_item_img">
+            <img src="/img/icon_time.svg">
+          </div>
+          <div class="shop_cond_item_cont">
+            <strong>{{langs.cashback_deadline}}</strong><br>
+            {{langs.average_time}} <strong>{{store.average_time}} {{langs.days}}</strong><br>
+            {{langs.maximal_time}} <strong>{{store.max_time}} {{langs.days}}</strong>
+          </div>
+        </div>
+        
+        <div class="shop_cond_item">
+          <div class="shop_cond_item_img">
+            <img src="/img/icon_location.svg">
+          </div>
+          <div class="shop_cond_item_cont">
+            <strong>{{langs.in_which_countries}}</strong><br>
+            {{langs.cashback_available_buyers_from}}<br>
+            <strong>{% if store.countries === "all" %}{{langs.from_all_countries}}{% else %}{{store.countries}}{% endif %}</strong>
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+
+    <div class="col_12 col_md_7 col_lg_8 shop_item_rside">
+
+      <h1 class="shop_item_title"><i class="fa fa-shopping-cart"></i> {{langs.shop_title_1}} {{store.name}} {{langs.shop_title_2}}</h1>
+      {% include "noverified.html" %}
+      <h5 class="shop_desc_title"><i class="fa fa-info-circle"></i> {{langs.shop_information}}</h5>
+      <div class="shop_description">
+        {% autoescape false %}
+        {{store.desc}}
+        {% endautoescape %}
+      </div>
+
+      <div class="infobar yellow fixed show"><i>Кэшбэк может зависеть от категории товара и от типа аккаунта в системе {{configs.siteName}}. Чем выше тип аккаунта, тем больше процент вознаграждения.</i></div>
+
+      {% if relatedStores %}
+      <div class="shop_related_shops">
+        <h3>{{langs.related_shops}}</h3>
+        <div class="row shops_list">
+
+          {% for relStore in relatedStores %}
+          <div class="shop_item">
+            <a href="/shop?id={{relStore._id}}">
+              <div class="shop_image"><img src="/img/stores/{{relStore.picture}}"></div>
+              <h3 class="shop_name">{{relStore.name}}</h3>
+              <div class="shop_info">
+                {% if relStore.discount_cashback %}
+                <strong><del>{{relStore.cashback}}</del><br>{{relStore.discount_cashback}}</strong>
+                {% else %}
+                <strong>{{relStore.cashback}}</strong>
+                {% endif %}
+                <br>{{langs.cashback}}
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</div>
+{% include "footer.html" %}

@@ -1,0 +1,147 @@
+{% include "admin/adm_header.html" %}
+{% if empty %}
+<div class="empty_list">Магазин не найден!</div>
+{% else %}
+<form id="form" method="post" enctype="multipart/form-data" action="/admin/api/editproduct">
+	<div class="fields_list">
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Название товара:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="name" class="field" value="{{product.name}}">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Магазин:
+			</div>
+			<div class="flist_right">
+				<select name="store" class="field">
+					{% for store in stores %}
+					<option value="{{store._id}}"{% if store._id === product.store._id %} selected{% endif %}>{{store.name}}</option>
+		        	{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Категории:
+			</div>
+			<div class="flist_right">
+				<select name="categories" class="field" multiple>
+					{% for ctgr in categories %}
+						<option value="{{ctgr._id}}"{% if ctgr._id in product.categories %} selected{% endif %}>{{ctgr.name}}</option>
+						{% for child in ctgr.childs %}
+						<option value="{{child._id}}"{% if child._id in product.categories %} selected{% endif %}> - {{child.name}}</option>
+			        	{% endfor %}
+		        	{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Доступные страны:
+			</div>
+			<div class="flist_right">
+				<select name="countries" class="field" multiple>
+					{% include "countries.html" %}
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Новая картинка:
+			</div>
+			<div class="flist_right">
+				<input type="file" name="picture" class="field" accept="image/png,image/jpg,image/jpeg">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Цена товара:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="number" step="0.01" name="price" class="field" value="{{product.price}}">
+					<select name="price_currency">
+						<option value="USD"{% if product.currency==="USD" %} selected{% endif %}>{{langs.currency_d}}</option>
+						<option value="RUB"{% if product.currency==="RUB" %} selected{% endif %}>{{langs.currency_r}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Кэшбэк <span class="tooltip-right" data-tooltip="Если оставить поле пустым, значение кэшбэка будет взято с выбранного магазина. Допустимые варинаты: [x], [-x], [x-y]">[?]</span>:
+			</div>
+			<div class="flist_right">
+				<div class="flist_inputgroup">
+					<input type="text" pattern="[0-9-.]+" name="cashback" class="field" placeholder="{{product.store.cashback}}" value="{{product.cashback}}">
+					<select name="cashback_k">
+						<option value="%"{% if product.cashback_k==="%" %} selected{% endif %}>%</option>
+						<option value="$"{% if product.cashback_k==="$" %} selected{% endif %}>$</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Ссылка на страницу товара:
+			</div>
+			<div class="flist_right">
+				<input type="url" name="url" class="field" value="{{product.url}}">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Описание товара:
+			</div>
+			<div class="flist_right">
+				<div id="switchBoard">
+					<ul class="switchboard_control" id="switchBoardControl">
+						<li{% if admlang==1 %} class="selected"{% endif %}>Русский<i class="fa fa-caret-down"></i></li>
+						<li{% if admlang==2 %} class="selected"{% endif %}>English<i class="fa fa-caret-down"></i></li>
+					</ul>
+					<div class="switchboard_area{% if admlang==1 %} show{% endif %}">
+						<div class="bb_bar" id="bbTags">
+							<button type="button" data-alt="b">B</button>
+							<button type="button" data-alt="i"><i>I</i></button>
+							<button type="button" data-alt="u"><u>U</u></button>
+							<button type="button" data-alt="del"><del>S</del></button>
+							<button type="button" data-alt='a[href=""]'>URL</button>
+						</div>
+						<textarea name="desc_1" class="field">{{product.desc_1}}</textarea>
+					</div>
+					<div class="switchboard_area{% if admlang==2 %} show{% endif %}">
+						<div class="bb_bar" id="bbTags">
+							<button type="button" data-alt="b">B</button>
+							<button type="button" data-alt="i"><i>I</i></button>
+							<button type="button" data-alt="u"><u>U</u></button>
+							<button type="button" data-alt="del"><del>S</del></button>
+							<button type="button" data-alt='a[href=""]'>URL</button>
+						</div>
+						<textarea name="desc_2" class="field">{{product.desc_2}}</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Статус:
+			</div>
+			<div class="flist_right">
+				<select name="status" class="field">
+					<option value="1">Активен</option>
+					<option value="2"{% if product.status===2 %} selected{% endif %}>Неактивен</option>
+				</select>
+			</div>
+		</div>
+		<input type="hidden" name="product_id" value="{{product._id}}">
+		<div style="margin: 15px 0; text-align: center;">
+			<button type="submit" class="btn btn_info" style="padding: 0.4rem 5rem;">Редактировать товар</button>
+		</div>
+	</div>
+</form>
+{% endif %}
+{% include "admin/adm_footer.html" %}

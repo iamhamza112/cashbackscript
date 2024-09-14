@@ -1,0 +1,85 @@
+    </div>
+      </div>
+      <footer class="container_fluid">
+        <div class="container">
+          <div class="row footer_nav">
+            <div class="col_12 col_md_6 col_lg">
+              <a href="/shops">{{langs.all_stores}}</a>
+              <a href="/howitworks">{{langs.how_works_cashback}}</a>
+              <!--<a href="/coupons">Промокоды</a>-->
+            </div>
+            <div class="col_12 col_md_6 col_lg">
+              <a href="/faq">{{langs.ques_and_answrs}}</a>
+              <a href="/contact">{{langs.to_support}}</a>
+              <!--<a href="/about">{{langs.about_us}}</a>-->
+            </div>
+            <div class="col_12 col_md_6 col_lg">
+              <a href="/agreement">{{langs.agreement}}</a>
+              <a href="/privacy_policy">{{langs.privacy_policy}}</a>
+            </div>
+            <div class="col_12 col_md_6 col_lg follow_us">
+              <div class="follow_us_title">{{langs.follow_us}}</div>
+              <a href="/" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
+              <a href="/" target="_blank" class="vk"><i class="fab fa-vk"></i></a>
+              <a href="/" target="_blank" class="ok"><i class="fab fa-odnoklassniki"></i></a>
+              <a href="/" target="_blank" class="ig"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="row footer_copyright">
+            <div class="col_6 copyright_column">© Copyright {{configs.thisYear}} {{configs.siteName}}. {{langs.all_rights_reserved}}</div>
+            <div class="col_6 flags_column">
+              <div class="flags" id="openFlags">
+                <div class="{% if lang===1 %}current{% endif %}" title="Русский" data-id="1"><img src="/img/flag_1.png"></div>
+                <div class="{% if lang===2 %}current{% endif %}" title="English" data-id="2"><img src="/img/flag_2.png"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {% include "notifications.html" %}
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+    <script src="/js/jquery.scrollintoview.min.js"></script>
+    <script src="/js/ulogin.js?v=1"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#edeff5",
+          "text": "#838391"
+        },
+        "button": {
+          "background": "#17a2b8"
+        }
+      },
+      "content": {
+        "message": "{{langs.cookieconsent_desc}}<br>{{langs.cookieconsent_desc_2}}",
+        "dismiss": "{{langs.cookieconsent_button}}",
+        "link": "{{langs.cookieconsent_policy_link}}",
+        "href": "/privacy_policy"
+      }
+    })});
+    </script>
+    {% if configs.test===false %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127639667-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-127639667-1');
+    </script>
+    {% endif %}
+
+   
+  </body>
+
+</html>

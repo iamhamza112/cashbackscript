@@ -1,0 +1,88 @@
+{% include "admin/adm_header.html" %}
+<form method="post" action="/admin/api/newcategory" id="form">
+	<div class="fields_list">
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Название категории:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="category_name2" class="field" placeholder="English">
+				<input type="text" name="category_name1" class="field" placeholder="Русский" style="margin-top: 7px">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Родительская категория:
+			</div>
+			<div class="flist_right">
+				<select name="parent_category" class="field" id="parentCategories">
+					<option value="" selected="">-- Без родительскаой категории --</option>
+					{% for ctgr in categories %}
+					<option value="{{ctgr._id}}">{{ctgr.name}}</option>
+		        	{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="fields_list_item" id="categoryFaIcon">
+			<div class="flist_left">
+				Иконка FA:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="category_icon" class="field" placeholder="folder">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Описание категории:
+			</div>
+			<div class="flist_right">
+				<div id="switchBoard">
+					<ul class="switchboard_control" id="switchBoardControl">
+						<li{% if admlang==1 %} class="selected"{% endif %}>Русский<i class="fa fa-caret-down"></i></li>
+						<li{% if admlang==2 %} class="selected"{% endif %}>English<i class="fa fa-caret-down"></i></li>
+					</ul>
+					<div class="switchboard_area{% if admlang==1 %} show{% endif %}">
+						<div class="bb_bar" id="bbTags">
+							<button type="button" data-alt="b">B</button>
+							<button type="button" data-alt="i"><i>I</i></button>
+							<button type="button" data-alt="u"><u>U</u></button>
+							<button type="button" data-alt="del"><del>S</del></button>
+							<button type="button" data-alt='a[href=""]'>URL</button>
+						</div>
+						<textarea name="category_desc_1" class="field"></textarea>
+					</div>
+					<div class="switchboard_area{% if admlang==2 %} show{% endif %}">
+						<div class="bb_bar" id="bbTags">
+							<button type="button" data-alt="b">B</button>
+							<button type="button" data-alt="i"><i>I</i></button>
+							<button type="button" data-alt="u"><u>U</u></button>
+							<button type="button" data-alt="del"><del>S</del></button>
+							<button type="button" data-alt='a[href=""]'>URL</button>
+						</div>
+						<textarea name="category_desc_2" class="field"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Meta Description:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="category_metadesc" class="field">
+			</div>
+		</div>
+		<div class="fields_list_item">
+			<div class="flist_left">
+				Meta Keywords:
+			</div>
+			<div class="flist_right">
+				<input type="text" name="category_metakeys" class="field">
+			</div>
+		</div>
+		<div style="margin: 15px 0; text-align: center;">
+			<button type="submit" class="btn btn_info" style="padding: 0.4rem 5rem;">Добавить новую категорию</button>
+		</div>
+	</div>
+</form>
+{% include "admin/adm_footer.html" %}

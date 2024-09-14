@@ -1,0 +1,64 @@
+{% include "header.html" %}
+<div class="container">
+
+  {% include "navbar.html" %}
+
+  <div class="row">
+
+    {% include "profile_sidebar.html" %}
+
+    <div class="col_sm_8 col_lg_9 profile_right">
+
+      {% include "noverified.html" %}
+
+      <h4>{{langs.profile_title}} {{user.name}}</h4>
+
+      {% include "profile_balance.html" %}
+
+      <h3>{{langs.my_orders}}{{langs.colon}}</h3>
+
+      <table class="orders_table">
+        <thead class="sortable">
+          <tr>
+            <th>{{langs.store}} / {{langs.product}}</th>
+            <th>{{langs.purchase_amount}}</th>
+            <th>{{langs.cashback}}</th>
+            <th class="d_none d_md_block defsort">{{langs.date}}</th>
+            <th>{{langs.status}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if empty %}
+          <tr class="empty_list"><td>{{langs.empty_list}}</td></tr>
+          {% else %}
+          {% for order in orders %}
+          <tr>
+            <td>
+              {% if order.product %}
+              <img src="/img/products/{{order.product.picture}}" title="{{order.product.name}}">
+              {% else %}
+              <a target="_blank" href="/shop?id={{order.store._id}}"><img src="/img/stores/{{order.store.picture}}" title="{{order.store.name}}"></a>
+              {% endif %}
+            </td>
+            <td>{{order.amount}}</td>
+            <td>{{order.cashback}}</td>
+            <td class="d_none d_md_block">{{order.date}}</td>
+            {% if order.status===1 %}
+            <td class="color_blue">{{langs.order_status_2}}</td>
+            {% elseif order.status===2 %}
+            <td class="color_green">{{langs.order_status_3}}</td>
+            {% elseif order.status===2 %}
+            <td class="color_red">{{langs.order_status_4}}</td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+      {% include "pagination.html" %}
+    </div>
+
+  </div>
+
+</div>
+{% include "footer.html" %}

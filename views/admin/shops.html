@@ -1,0 +1,40 @@
+{% include "admin/adm_header.html" %}
+<div class="adm_right_controls">
+	<a href="/admin/newshop"><i class="fa fa-plus"></i> Добавить новый магазин</a>
+</div>
+<table class="adm_table" id="tableShops">
+	<thead class="sortable">
+		<tr>
+			<th class="nosort">Магазин</th>
+			<th>Партнерская сеть</th>
+			<th>Кэшбэк</th>
+			<th>Покупки</th>
+			<th>Доход</th>
+			<th>Статус</th>
+			<th class="nosort">Опции</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if empty %}
+        <tr class="empty_list"><td>Список пуст!</td></tr>
+        {% else %}
+        {% for store in stores %}
+        <tr>
+			<td><img class="shop" src="/img/stores/{{store.picture}}" title="{{store.name}}"></td>
+			<td>{{store.affilnet.title}}</td>
+			<td>{{store.cashback}}</td>
+			<td>{{store.purchases}}</td>
+			<td>{{store.profit}} {{langs.currency_d}} <span style="color:#bbb">|</span> {{store.profit_r}} {{langs.currency_r}}</td>
+			{% if store.status===2 %}<td class="color_red">Неактивен</td>{% else %}
+			<td class="color_green">Активен</td>{% endif %}
+			<td class="actions">
+				<a href="/admin/editshop?id={{store._id}}"><i class="fa fa-edit"></i></a>
+				<a href="/admin/deleteshop?id={{store._id}}"><i class="fa fa-trash-alt"></i></a>
+			</td>
+		</tr>
+        {% endfor %}
+        {% endif %}
+	</tbody>
+</table>
+{% include "./pagination.html" %}
+{% include "admin/adm_footer.html" %}

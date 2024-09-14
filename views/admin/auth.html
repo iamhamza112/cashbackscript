@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/admin.css">
+    <link rel="stylesheet" href="/styles/fontawesome.min.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon.ico">
+    <title>{{title}}</title>
+</head>
+<body>
+	<div class="wrapper" id="auth">
+    <div id="auth_cont">
+        <form action="/admin/api/auth" method="post">
+            <fieldset class="clearfix">
+                <!--<p><span class="fa fa-user"></span><input type="text" name="email" placeholder="E-mail" autofocus required></p>-->
+                <p><span class="fa fa-lock"></span><input type="password" name="password"  placeholder="Пароль" autofocus required></p>
+                <p><button type="submit" class="btn btn_info">Войти в админпанель</button></p>
+            </fieldset>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

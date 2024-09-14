@@ -1,0 +1,46 @@
+{% include "admin/adm_header.html" %}
+<style>td > img {height:60px}</style>
+<div class="adm_right_controls">
+	<a href="/admin/import_products"><i class="fa fa-file-import"></i> Импорт товаров</a>
+	<a href="/admin/newproduct"><i class="fa fa-plus"></i> Добавить новый товар</a>
+</div>
+<table class="adm_table" id="tableShops">
+	<thead class="sortable">
+		<tr>
+			<th class="nosort">Товар</th>
+			<th class="d_none d_lg_block">Магазин</th>
+			<th>Цена</th>
+			<th>Кэшбэк</th>
+			<th>Покупки</th>
+			<th>Доход</th>
+			<th class="defsort">Дата</th>
+			<th class="d_none d_lg_block">Статус</th>
+			<th class="nosort">Опции</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if empty %}
+        <tr class="empty_list"><td>Список пуст!</td></tr>
+        {% else %}
+        {% for product in products %}
+        <tr>
+			<td><img src="{{product.picture}}" title="{{product.name}}"></td>
+			<td class="d_none d_lg_block">{{product.store.name || " - "}}</td>
+			<td>{{product.price}} {{product.currency}}</td>
+			<td>{{product.cashback}}</td>
+			<td>{{product.purchases}}</td>
+			<td>{{product.profit}} {{langs.currency_d}} <span style="color:#bbb">|</span> {{product.profit_r}} {{langs.currency_r}}</td>
+			<td>{{product.date}}</td>
+			{% if product.status===2 %}<td class="d_none d_lg_block color_red">Неактивен</td>{% else %}
+			<td class="d_none d_lg_block color_green">Активен</td>{% endif %}
+			<td class="actions">
+				<a href="/admin/editproduct?id={{product._id}}"><i class="fa fa-edit"></i></a>
+				<a href="/admin/deleteproduct?id={{product._id}}"><i class="fa fa-trash-alt"></i></a>
+			</td>
+		</tr>
+        {% endfor %}
+        {% endif %}
+	</tbody>
+</table>
+{% include "./pagination.html" %}
+{% include "admin/adm_footer.html" %}

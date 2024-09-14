@@ -1,0 +1,56 @@
+{% if categories %}
+<div class="right_menu">
+  <ul id="rightMenu">
+    {% for ctgr in categories %}
+    <li>
+    	<a href="/{{categoryPath}}?category={{ctgr._id}}"><i class="fa fa-{{ctgr.icon}}"></i>{{ctgr.name}}</a>
+    	{% if ctgr.childs.length %}
+    	<span id="openChildMenu"><i class="fa fa-angle-down{% if categoryId === ctgr._id || categoryParentId === ctgr._id %} rotate{% endif %}"></i></span>
+    	{% if categoryId === ctgr._id || categoryParentId === ctgr._id %}<ul style="display: block;">{% else %}<ul>{% endif %}
+    	{% for child in ctgr.childs %}
+    	<li>
+    		<a href="/{{categoryPath}}?category={{child._id}}"><i class="fa fa-circle"></i>{{child.name}}</a>
+    	</li>
+    	{% endfor %}
+    	</ul>
+    	{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<div class="right_products">
+
+	{% for product in right_products %}
+    <div class="row product_item">
+    <h3 class="product_name" title="{{product.name}}">{{product.name}}</h3>
+    <div class="col_3 product_image"><img src="{{product.picture}}"></div>
+    <div class="col_9 product_right">
+        <div class="product_info">
+	        <div class="product_price">{{langs.price}}{{langs.colon}}<br><strong>{{product.price}} $</strong></div>
+	        <div class="product_cashback">
+	          	{{langs.cashback}}{{langs.colon}}<br>
+	          	{% if product.discount_cashback %}
+		          <strong><del>{{product.cashback}}</del> {{product.discount_cashback}}</strong>
+		          {% else %}
+		          <strong>{{product.cashback}}</strong>
+		          {% endif %}
+	      	</div>
+        </div>
+    </div>
+    <div class="product_goto">
+	    {% if user && user.noverified===undefined %}
+	    <a href="{{product.url}}?subid={{user._id}}&subid1={{product._id}}&subid2=2" rel="nofollow" target="_blank" data-id="{{product._id}}" id="goTo" class="btn {% if product.isActivated %}btn_success activated{% else %}btn_secondary{% endif %}">{{langs.buy_with_cashback}}</a>
+	    {% else %}
+	    <a href="{{product.url}}" rel="nofollow" target="_blank" class="btn btn_secondary">{{langs.goto_shop}}</a>
+	    {% endif %}
+	  </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<!--<div class="right_advertise">
+	<a href="/"><img src="/img/advertise.jpg"></a>
+</div>-->

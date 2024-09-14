@@ -1,0 +1,9 @@
+{% include "admin/adm_header.html" %}
+<div class="container">
+	<div class="infobar error" style="display: block; margin: 20px 0 100px 0;">
+		<b>Внимание! Обнаружена ошибка. {{error.status}} {{message}}</b><br>
+		К сожелению данной страницы не существует.
+		<pre>{{error.stack}}</pre>
+	</div>
+</div>
+{% include "admin/adm_footer.html" %}

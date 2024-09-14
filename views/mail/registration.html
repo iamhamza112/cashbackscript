@@ -1,0 +1,33 @@
+{% include "mail_header.html" %}
+
+<p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 15px;"><span class="preheader">{{langs.register_title}}</span></p>
+<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+{{langs.register_1_1}} {{userName}}.<br><br> {{langs.register_1_2}} {{siteName}}{{langs.register_1_3}}</p>
+
+<table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
+  <tbody>
+    <tr>
+      <td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;">
+        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+          <tbody>
+            <tr>
+              <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;"> <a href="{{siteUrl}}/profile" target="_blank" style="display: inline-block;border: solid 1px #3498db;box-sizing: border-box;cursor: pointer;text-decoration: none;font-size: 14px;font-weight: bold;margin: 0;padding: 12px 25px;text-transform: capitalize;color: #fff;background-color: #17a2b8;border-color: #17a2b8;">{{langs.register_button}}</a> </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+  {{langs.register_2}}
+</p>
+
+<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px; text-align: center;">
+  <a href="mailto:{{supportMail}}"><img src="{{siteUrl}}/img/message_icon.png" style="margin-bottom: -5px;margin-right: 5px;"> {{supportMail}}</a>
+</p>
+
+<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"><b>{{langs.footer_note}}</b> {{langs.footer_note_text}}</p>
+                      
+{% include "mail_footer.html" %}

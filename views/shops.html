@@ -1,0 +1,59 @@
+{% include "header.html" %}
+
+<div class="container">
+  <div class="row shops_middle">
+    <div class="col_12 col_md_8 col_lg_9 shops_content">
+
+      {% include "navbar.html" %}
+
+      <h2><i class="fa fa-folder-open"></i> {{langs.cashback_stores}}</h2>
+
+      <table class="sorting">
+        <thead class="sortable">
+          <tr>
+            <th class="nosort d_none d_lg_block">{{langs.sort_by}}</th>
+            <th class="defsort">{{langs.sort_name}}</th>
+            <th>{{langs.sort_date}}</th>
+            <th>{{langs.sort_cashback}}</th>
+            <th>{{langs.sort_purchases}}</th>
+          </tr>
+        </thead>
+      </table>
+
+      <div class="row shops_list">
+        {% if catgoryDesc %}<div class="page_bottom_desc">{{catgoryDesc}}</div>{% endif %}
+        {% if empty %}
+          <div class="empty_list">{{langs.empty_list}}</div>
+        {% elseif searchError %}
+          <div id="infoBar" class="infobar error fixed show" style="width:100%">{{langs.info_search_grt_then}}</div>
+        {% elseif searchEmpty %}
+          <div id="infoBar" class="infobar error fixed show" style="width:100%">{{langs.info_search_empty}}</div>
+        {% else %}
+        {% for store in stores %}
+
+        <div class="shop_item">
+          <a href="/shop?id={{store._id}}">
+            <div class="shop_image"><img src="/img/stores/{{store.picture}}"></div>
+            <h3 class="shop_name">{{store.name}}</h3>
+            <div class="shop_info">
+              {% if store.discount_cashback %}
+              <strong><del>{{store.cashback}}</del><br>{{store.discount_cashback}}</strong>
+              {% else %}
+              <strong>{{store.cashback}}</strong>
+              {% endif %}
+              <br>{{langs.cashback}}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+      </div>
+      {% include "pagination.html" %}
+    </div>
+    <div class="col_12 col_md_4 col_lg_3 sidebar">
+      {% include "sidebar.html" %}
+    </div>
+  </div>
+</div>
+{% include "footer.html" %}

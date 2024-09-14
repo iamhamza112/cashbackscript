@@ -1,0 +1,48 @@
+{% include "admin/adm_header.html" %}
+{% if empty %}
+<div class="empty_list">Пользователь не найден!</div>
+{% else %}
+<div class="adm_userprofile">
+	<div class="adm_user_photo">
+		<div class="profile_image" id="profileImage">
+			<div id="photoLoader" class="photo_loader">Loading...</div>
+	        <img src="{{userData.avatar}}">
+	        <div class="change_avatar" id="changePhotoBut">Изменить фото</div>
+	        <form id="changePhotoForm" enctype="multipart/form-data" method="post" action="/api/changePhoto">
+	        	<input type="hidden" name="user_id" value="{{userData._id}}">
+	            <input type="file" name="photo" id="photoFile" class="photo_file" accept="image/png,image/jpg,image/jpeg">
+	        </form>
+	    </div>
+	    <div class="adm_profile_buts">
+	    	<a href="/admin/edituser?id={{userData._id}}" class="btn btn_info">Редактировать</a>
+	    	<a href="#" id="deleteUser" data-id="{{userData._id}}" class="btn btn_danger">Удалить</a>
+	    </div>
+	</div>
+	<div class="adm_infolist">
+		<div class="infolist">
+			<div class="infolist_l">ID:</div><div class="infolist_r">{{userData._id}}</div>
+			<div class="infolist_l">Имя пользователя:</div><div class="infolist_r">{{userData.name}}</div>
+			<div class="infolist_l">E-mail:</div><div class="infolist_r">{{userData.email}}</div>
+			<div class="infolist_l">Страна:</div><div class="infolist_r">{{userData.country || " - "}}</div>
+			<div class="infolist_l">Тип аккаунта:</div><div class="infolist_r">
+			{% if userData.status===4 %}<span class="color_red">Голд</span>
+			{% elseif userData.status===3 %}<span class="color_green">Серебро</span>
+			{% elseif userData.status===2 %}<span class="color_blue">Бронз</span>
+			{% else %}<span class="color_yellow">Стандарт</span>{% endif %}</div>
+			<div class="infolist_l">Дата регистрации:</div><div class="infolist_r">{{userData.regDate}}</div>
+			<div class="infolist_l">Последний вход:</div><div class="infolist_r">{{userData.logDate}}</div>
+			<div class="infolist_l">Группа:</div><div class="infolist_r">
+			{% if userData.group===3 %}<span class="color_red">Администратор</span>
+			{% elseif userData.group===2 %}<span class="color_blue">Модератор</span>
+			{% else %}<span class="color_yellow">Покупатель</span>{% endif %}</div>
+			<div class="infolist_l">Покупки:</div><div class="infolist_r">{{userData.purchases || 0}}</div>
+			<div class="infolist_l">Баланс:</div><div class="infolist_r">{{userData.money}} {{langs.currency_d}} <span style="color:#bbb">|</span> {{userData.money_r}} {{langs.currency_r}}</div>
+			<div class="infolist_l">Холд:</div><div class="infolist_r">{{userData.hold}} {{langs.currency_d}} <span style="color:#bbb">|</span> {{userData.hold_r}} {{langs.currency_r}}</div>
+			<div class="infolist_l">Выведен всего:</div><div class="infolist_r">{{userData.payout}} {{langs.currency_d}} <span style="color:#bbb">|</span> {{userData.payout_r}} {{langs.currency_r}}</div>
+			<div class="infolist_l">Заработан всего:</div><div class="infolist_r">{{(userData.payout+userData.hold+userData.money).toFixed(2)}} {{langs.currency_d}} <span style="color:#bbb">|</span> {{(userData.payout_r+userData.hold_r+userData.money_r).toFixed(2)}} {{langs.currency_r}}</div>
+			<div class="infolist_l">Статус:</div><div class="infolist_r {% if userData.blocked %}color_red">Заблокирован{% else %}color_green">Активно{% endif %}</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% include "admin/adm_footer.html" %}
