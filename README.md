@@ -2,11 +2,20 @@
 
 ## Support Us
 
-If you like this project, consider buying us a coffee:
+If you like this project, consider supporting us:
 
-<a href="https://www.buymeacoffee.com/hamzaaz123" target="_blank">
-    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdms2NHZvZWhoc2UybXlpN2NrY3AybXVlYXR6a3AycXlmZTBibXBydSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/513lZvPf6khjIQFibF/giphy.webp" alt="Buy Me a Coffee" style="width: 200px; height: auto;" />
-</a>
+<div style="display: flex; gap: 10px;">
+
+    <a href="https://www.buymeacoffee.com/hamzaaz123" target="_blank">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdms2NHZvZWhoc2UybXlpN2NrY3AybXVlYXR6a3AycXlmZTBibXBydSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/513lZvPf6khjIQFibF/giphy.webp" alt="Buy Me a Coffee" style="width: 100px; height: auto;" />
+    </a>
+
+    <a href="https://paypal.me/iamhamza447" target="_blank">
+        <img src="https://e7.pngegg.com/pngimages/314/569/png-clipart-donate-paypal-button-tech-companies.png" alt="Donate with PayPal" style="width: 100px; height: auto;" />
+    </a>
+
+</div>
+
 
 
 
