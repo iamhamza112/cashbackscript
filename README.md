@@ -1,23 +1,19 @@
 ## cashback website nodejs app
 
-## Support Us
+# Support Us
 
 If you like this project, consider supporting us:
 
-<div style="display: flex; gap: 10px;">
-
+<p>
     <a href="https://www.buymeacoffee.com/hamzaaz123" target="_blank">
-        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdms2NHZvZWhoc2UybXlpN2NrY3AybXVlYXR6a3AycXlmZTBibXBydSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/513lZvPf6khjIQFibF/giphy.webp" alt="Buy Me a Coffee" style="width: 100px; height: auto;" />
+        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px; width: 217px;" />
     </a>
-
     <a href="https://paypal.me/iamhamza447" target="_blank">
-        <img src="https://e7.pngegg.com/pngimages/314/569/png-clipart-donate-paypal-button-tech-companies.png" alt="Donate with PayPal" style="width: 100px; height: auto;" />
+        <img src="https://i.ibb.co/CQ4f09N/png-clipart-donate-paypal-button-tech-companies-removebg-preview.png" alt="Donate with PayPal" style="height: 60px;" />
     </a>
+</p>
 
-</div>
-
-
-
+Mail: iamhamza112@protonmail.com
 
 
 # Update the package lists
@@ -64,3 +60,6 @@ sudo certbot certonly --webroot
 # Restart the server
 sudo pm2 update 0
 
+
+# Note
+Admin panel is in russian and not translated. it would be appericiated if someone translates and commits :)
