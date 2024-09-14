@@ -53,11 +53,11 @@ sudo apt install -y certbot
 # Run the following command and follow the instructions in the terminal to install SSL
 sudo certbot certonly --webroot
 
-# After successful SSL installation, open the 'bin/www' file
-# Uncomment the line - process.env.NODE_ENV = "production";
-# Change app.set('port', 80); to app.set('port', 443);
-# Change the domain to your own - const domain = "democashback.ru";
-# Restart the server
+#After successful SSL installation, open the 'bin/www' file <br>
+#Uncomment the line - process.env.NODE_ENV = "production"; <br>
+#Change app.set('port', 80); to app.set('port', 443); <br>
+#Change the domain to your own - const domain = "example.com"; (might be another domain name)<br>
+#Restart the server <br>
 sudo pm2 update 0
 
 
