@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+//process.env.NODE_ENV = "production";
+
+const app = require('../app');
+
+const domain = "democashback.ru";
+
+app.set('port', 80);
+
+if (app.get('env') === "production") {
+
+	const http = require('http');
+
+	const https = require('https');
+
+	const express = require('express');
+
+	const fs = require('fs');
+
+	const httpApp = express();
+
+	httpApp.set('port', 80);
+
+	// http to https redirect
+
+	httpApp.use(function (req, res, next) {
+
+	    res.redirect(301, "https://" + req.hostname + req.url);
+
+	});
+
+	const httpsOptions = {
+
+	    key: fs.readFileSync('/etc/letsencrypt/live/'+domain+'/privkey.pem'),
+	    cert: fs.readFileSync('/etc/letsencrypt/live/'+domain+'/fullchain.pem')
+
+	};
+
+	http.createServer(httpApp).listen(httpApp.get('port'), function() {
+
+	    console.log('Express HTTP server listening on port ' + httpApp.get('port'));
+
+	});
+
+	https.createServer(httpsOptions, app).listen(app.get('port'), function() {
+
+	    console.log('Express HTTPS server listening on port ' + app.get('port'));
+
+	});
+
+} else {
+
+	app.listen(app.get('port'), function() {
+
+		console.log('Express server listening on port ' + app.get('port'));
+
+	});
+
+}
