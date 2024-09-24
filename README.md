@@ -13,9 +13,6 @@
     </a>
 </p>
 
-Mail: iamhamza112@protonmail.com
-
-
 ### Update the package lists
 sudo apt update
 
