@@ -59,4 +59,4 @@ sudo pm2 update 0
 
 
 ### Note
-Admin panel is in russian and not translated. it would be appericiated if someone translates and commits :)
+Admin panel is in russian and not translated. it would be great if someone translates and commits :)
